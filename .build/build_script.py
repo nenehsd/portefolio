@@ -164,7 +164,7 @@ note(u"Mode d'emploi — le texte en grand est à dire ; les encadrés en vert o
      u"Les minutages sont cumulés depuis le début.")
 
 # ============================================================ 1 ACCROCHE
-section(u"1", u"Accroche", u"Slides 1–2", u"0:00 → 0:35")
+section(u"1", u"Accroche", u"Slides 1 à 3", u"0:00 → 0:35")
 dire(u"Bonjour à toutes et à tous. Je m'appelle Nene Halimatou Sahdiya Diallo, "
      u"et je suis la fondatrice de Sadiya Digital Agri.")
 dire(u"Je voudrais commencer par une question toute simple. Au Sénégal, nous "
@@ -175,7 +175,7 @@ note(u"Marquer une vraie pause de deux secondes après la question. "
      u"Regarder le jury, ne pas enchaîner tout de suite.")
 
 # ============================================================ 2 PROBLEME
-section(u"2", u"Le problème", u"Slide 3", u"0:35 → 1:10")
+section(u"2", u"Contexte & problématique", u"Slide 2", u"0:35 → 1:10")
 dire(u"Aujourd'hui, les entreprises agroalimentaires sénégalaises font face à "
      u"trois freins. D'abord, une présence très faible sur les réseaux sociaux : "
      u"des pages inactives, des publications rares. Ensuite, un manque de "
@@ -188,7 +188,7 @@ note(u"Appuyer sur « aucun client au bout » — c'est le point qui parle "
      u"le plus à un jury d'entrepreneurs.")
 
 # ============================================================ 3 SOLUTION
-section(u"3", u"La solution & le marché", u"Slides 4–5", u"1:10 → 1:55")
+section(u"3", u"La solution & le marché", u"Slides 4 et 5", u"1:10 → 1:55")
 dire(u"Ma réponse, c'est Sadiya Digital Agri : une agence de community management "
      u"spécialisée dans le secteur agro-industriel. Nous proposons trois choses : "
      u"la stratégie social media, la création de contenu, et la gestion de "
@@ -204,7 +204,7 @@ note(u"C'est le cœur de votre crédibilité. Ralentir sur « agriculture et dig
      u"et laisser la phrase respirer.")
 
 # ============================================================ 4 STRATEGIE
-section(u"4", u"La stratégie TOMSTER", u"Slides 6–13", u"1:55 → 2:50")
+section(u"4", u"La stratégie TOMSTER", u"Slides 6 à 13", u"1:55 → 2:50")
 dire(u"Pour y arriver, j'applique la méthode TOMSTER. Je vais vous en donner "
      u"l'essentiel.")
 dire(u"Ma cible, c'est Aminata : trente-six ans, directrice d'une PME de "
@@ -222,7 +222,7 @@ note(u"Section dense : ne pas accélérer. Si le temps manque, supprimer la phra
      u"sur les cinq piliers, pas les chiffres.")
 
 # ============================================================ 5 MODELE ECO
-section(u"5", u"Le modèle économique", u"Slides 14–17", u"2:50 → 3:30")
+section(u"5", u"Modèle économique & benchmark", u"Slides 14 à 17", u"2:50 → 3:30")
 dire(u"Mon modèle économique repose sur l'abonnement mensuel, avec trois "
      u"formules : Essentiel à soixante-quinze mille francs, Pro à cent cinquante "
      u"mille, et Premium à deux cent cinquante mille francs par mois. S'y ajoutent "
@@ -231,11 +231,15 @@ dire(u"Mes charges mensuelles sont estimées à quatre-vingt-cinq mille francs. 
      u"Autrement dit, dès le troisième client en formule Pro, l'activité est "
      u"rentable. Mon objectif à six mois : quatre cent cinquante mille francs "
      u"de revenus mensuels.")
-note(u"Annoncer le seuil de rentabilité avec assurance : c'est ce qu'un jury "
-     u"retient d'un business model.")
+dire(u"Face à la concurrence, ma différence tient en une phrase : je suis la "
+     u"seule à combiner expertise agronomique et maîtrise digitale. Les agences "
+     u"établies ont la méthode mais pas la connaissance du secteur ; les "
+     u"freelances ont les tarifs mais pas la stratégie.")
+note(u"Annoncer le seuil de rentabilité avec assurance, puis enchaîner sur le "
+     u"benchmark : c'est ce qu'un jury retient d'un business model.")
 
 # ============================================================ 6 TRACTION
-section(u"6", u"Réalisations & équipe", u"Slides 18–21", u"3:30 → 4:05")
+section(u"6", u"Réalisations & équipe", u"Slides 18 à 21", u"3:30 → 4:05")
 dire(u"Et je ne pars pas de zéro. L'entreprise est formalisée : j'ai le NINEA et "
      u"le registre de commerce. J'ai construit toute l'identité de marque : le "
      u"logo, la charte graphique, la bannière et la carte de visite. Ma présence "
