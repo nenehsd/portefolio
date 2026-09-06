@@ -235,7 +235,7 @@ note(u"Annoncer le seuil de rentabilité avec assurance : c'est ce qu'un jury "
      u"retient d'un business model.")
 
 # ============================================================ 6 TRACTION
-section(u"6", u"Ce que j'ai déjà réalisé", u"Slides 18–20", u"3:30 → 4:05")
+section(u"6", u"Réalisations & équipe", u"Slides 18–21", u"3:30 → 4:05")
 dire(u"Et je ne pars pas de zéro. L'entreprise est formalisée : j'ai le NINEA et "
      u"le registre de commerce. J'ai construit toute l'identité de marque : le "
      u"logo, la charte graphique, la bannière et la carte de visite. Ma présence "
@@ -245,11 +245,15 @@ dire(u"Et je ne pars pas de zéro. L'entreprise est formalisée : j'ai le NINEA 
 dire(u"Mon ambition, maintenant, c'est de signer mes cinq premiers clients, de "
      u"construire un portefeuille récurrent, et de faire de Sadiya Digital Agri "
      u"la référence de la communication digitale agroalimentaire au Sénégal.")
+dire(u"Aujourd'hui je porte l'activité seule. Dès le troisième client régulier, "
+     u"je m'entourerai de deux profils en freelance : une créatrice de contenu "
+     u"pour la production visuelle et vidéo, et un responsable commercial pour "
+     u"la prospection.")
 note(u"Énumérer les réalisations d'un ton posé et factuel. C'est la preuve "
      u"que vous exécutez déjà.")
 
 # ============================================================ 7 CTA
-section(u"7", u"L'appel à l'action", u"Slides 21–22", u"4:05 → 4:30")
+section(u"7", u"L'appel à l'action", u"Slide 22", u"4:05 → 4:30")
 dire(u"Pour franchir cette étape, je sollicite un financement d'un million huit "
      u"cent cinquante mille francs CFA. Il servira à quatre choses : mes "
      u"équipements de production photo et vidéo, mes abonnements et outils sur "

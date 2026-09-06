@@ -890,143 +890,95 @@ s.text(u"Faire des produits agroalimentaires sénégalais une référence digita
        u"visibles, désirables et vendus en ligne.",
        142, 455, 740, size=10.5, font=POP, bold=True, color=BLANC)
 
-# ============================================================== 21 CTA
+# ============================================================== 21 EQUIPE
+s = new(u"Notre équipe")
+titlebar(s, u"L'équipe", u"Notre Équipe",
+         u"Trois compétences complémentaires : expertise métier, création et développement commercial.",
+         page=21)
+team = [
+    (IM("team_ceo.jpg"), u"Nene H. S. Diallo", u"Fondatrice & CEO",
+     u"Agronome de formation et community manager certifiée Simplon. "
+     u"Pilote la stratégie, la relation client et la production éditoriale.",
+     [u"Stratégie digitale", u"Expertise agro"], TURQUOISE),
+    (IM("team_createur.jpg"), u"Créatrice de contenu", u"Poste à pourvoir",
+     u"Conçoit les visuels, monte les vidéos courtes et décline la ligne "
+     u"éditoriale sur chaque réseau.",
+     [u"Canva & CapCut", u"Vidéo terrain"], VERT_FONCE),
+    (IM("team_commercial.jpg"), u"Responsable commercial", u"Poste à pourvoir",
+     u"Prospecte les PME agroalimentaires, qualifie les besoins et "
+     u"transforme les contacts en contrats.",
+     [u"Prospection B2B", u"Négociation"], OLIVE),
+]
+for i, (photo, nom, role, desc, tags, c) in enumerate(team):
+    x = 52 + i * 288
+    card(s, x, 176, 268, 232)
+    s.rect(x, 176, 268, 4, fill=c, radius=2)
+    s.image(photo, x + 22, 196, 96, 128)
+    s.text(nom, x + 132, 202, 124, size=11.5, font=POP, bold=True, color=VERT_FONCE,
+           leading=1.25)
+    s.text(role, x + 132, 240, 130, size=8.4, font=POP, bold=True, color=c,
+           leading=1.3)
+    for k, tg in enumerate(tags):
+        s.rect(x + 132, 264 + k * 22, 116, 17, fill=c, alpha=0.14, radius=8.5)
+        s.text(tg, x + 132, 268 + k * 22, 116, size=7, font=POP, bold=True,
+               color=c, align="c")
+    s.line(x + 22, 336, x + 246, 336, color=GRISE_CLAIR, lw=1)
+    s.text(desc, x + 22, 348, 228, size=8.6, font=POP, color=TRES_FONCE, leading=1.5)
+s.rect(52, 432, 856, 44, fill=VERT_FONCE, radius=9)
+s.text(u"AUJOURD'HUI", 76, 446, 110, size=8, font=POP, bold=True,
+       color=TURQUOISE, spacing=1.4)
+s.text(u"Je porte seule l'activité. Les deux postes seront recrutés en freelance "
+       u"dès le troisième client régulier.",
+       178, 445, 710, size=10, font=POP, color=BLANC)
+
+# ============================================================== 22 CTA
 s = new(u"Appel à l'action")
 titlebar(s, u"Ce dont j'ai besoin", u"Appel à l'Action",
-         u"De quoi ai-je besoin pour faire grandir Sadiya Digital Agri ?",
-         page=21)
+         u"Un financement de 1 850 000 FCFA pour passer à l'échelle.",
+         page=22)
 
-# --- Le montant demande
-s.rect(52, 164, 268, 132, fill=VERT_FONCE, radius=10)
-s.text(u"FINANCEMENT DEMANDÉ", 74, 184, 230, size=8, font=POP, bold=True,
-       color=TURQUOISE, spacing=1.5)
-s.text(u"1 850 000", 74, 206, 230, size=32, font=ALFA, color=BLANC)
-s.text(u"FCFA", 74, 248, 230, size=11, font=POP, bold=True, color=TURQUOISE)
-s.line(74, 270, 298, 270, color=TURQUOISE, lw=0.8, alpha=0.55)
-s.text(u"Soit environ 2 820 € — décaissement sur 12 mois",
-       74, 276, 232, size=7.6, font=POP, color=GRISE)
+# --- Montant
+s.rect(52, 168, 258, 116, fill=VERT_FONCE, radius=10)
+s.text(u"FINANCEMENT DEMANDÉ", 74, 186, 220, size=7.6, font=POP, bold=True,
+       color=TURQUOISE, spacing=1.4)
+s.text(u"1 850 000", 74, 204, 220, size=30, font=ALFA, color=BLANC)
+s.text(u"FCFA — sur 12 mois", 74, 248, 220, size=9, font=POP, bold=True,
+       color=TURQUOISE)
 
-# --- Repartition du financement
-posts = [(u"Équipements de production", u"1 020 000", 1.00, TURQUOISE),
-         (u"Abonnements & outils (12 mois)", u"305 000", 0.30, VERT_FONCE),
-         (u"Formations professionnelles", u"275 000", 0.27, OLIVE),
-         (u"Site vitrine professionnel", u"250 000", 0.25, TURQUOISE)]
-s.text(u"RÉPARTITION DU FINANCEMENT", 344, 170, 400, size=8, font=POP, bold=True,
-       color=TURQUOISE, spacing=1.5)
-for i, (lbl, montant, frac, c) in enumerate(posts):
-    y = 192 + i * 27
-    s.text(lbl, 344, y, 250, size=9, font=POP, color=TRES_FONCE)
-    s.rect(596, y + 2, 200, 9, fill=GRISE_CLAIR, radius=4.5)
-    s.rect(596, y + 2, 200 * frac, 9, fill=c, radius=4.5)
-    s.text(montant, 808, y, 100, size=9, font=POP, bold=True, color=VERT_FONCE,
-           align="r")
-s.line(344, 304, 908, 304, color=GRISE_CLAIR, lw=1)
-s.text(u"TOTAL", 344, 310, 200, size=9.5, font=POP, bold=True, color=VERT_FONCE)
-s.text(u"1 850 000 FCFA", 708, 310, 200, size=9.5, font=POP, bold=True,
-       color=TURQUOISE, align="r")
+# --- 4 postes de depense
+posts = [(u"Équipements de production",
+          u"Ordinateur, smartphone, éclairage, micro", u"1 020 000", TURQUOISE),
+         (u"Abonnements & outils",
+          u"Meta Ads, Canva Pro, CapCut Pro, hébergement", u"305 000", VERT_FONCE),
+         (u"Formations",
+          u"Analytics, marketing B2B, acquisition client", u"275 000", OLIVE),
+         (u"Site vitrine",
+          u"Offres, portfolio et formulaire de devis", u"250 000", TURQUOISE)]
+for i, (t, d, m, c) in enumerate(posts):
+    x = 336 + (i % 2) * 288
+    y = 168 + (i // 2) * 62
+    card(s, x, y, 268, 52)
+    s.rect(x, y, 4, 52, fill=c, radius=2)
+    s.text(t, x + 20, y + 10, 168, size=9.4, font=POP, bold=True, color=VERT_FONCE)
+    s.text(d, x + 20, y + 26, 180, size=7, font=POP, color=OLIVE)
+    s.text(m, x + 190, y + 18, 60, size=9, font=POP, bold=True, color=c, align="r")
 
 # --- Besoins non financiers
-s.text(u"AU-DELÀ DU FINANCEMENT", 52, 344, 400, size=8, font=POP, bold=True,
+s.text(u"AU-DELÀ DU FINANCEMENT", 52, 306, 400, size=8, font=POP, bold=True,
        color=OLIVE, spacing=1.5)
-needs = [(u"Accompagnement", u"Mentorat business : structuration\nde l'offre, pricing et gestion", TURQUOISE),
-         (u"Partenariat", u"Accès aux réseaux et fédérations\nagro-industriels du Sénégal", VERT_FONCE),
-         (u"Visibilité", u"Références, recommandations\net premiers clients pilotes", OLIVE)]
+needs = [(u"Accompagnement", u"Mentorat business : offre,\npricing et gestion", TURQUOISE),
+         (u"Partenariat", u"Accès aux réseaux\nagro-industriels", VERT_FONCE),
+         (u"Visibilité", u"Références et premiers\nclients pilotes", OLIVE)]
 for i, (t, d, c) in enumerate(needs):
     x = 52 + i * 288
-    card(s, x, 366, 268, 84)
-    s.rect(x, 366, 4, 84, fill=c, radius=2)
-    s.text(t, x + 22, 380, 220, size=13, font=POP, bold=True, color=VERT_FONCE)
-    s.text(d, x + 22, 404, 228, size=8.4, font=POP, color=OLIVE, leading=1.45)
+    card(s, x, 328, 268, 76)
+    s.rect(x, 328, 4, 76, fill=c, radius=2)
+    s.text(t, x + 20, 342, 220, size=12, font=POP, bold=True, color=VERT_FONCE)
+    s.text(d, x + 20, 364, 228, size=8.2, font=POP, color=OLIVE, leading=1.45)
 
 s.text(u"« Avec votre soutien, mon activité peut créer plus d'impact "
        u"et d'opportunités. »",
-       52, 466, 856, size=13, font=ALFA, color=VERT_FONCE, align="c")
-
-# ============================================================== 22 BUDGET DETAILLE
-s = new(u"Détail du financement")
-titlebar(s, u"Appel à l'action", u"À Quoi Servira le Financement",
-         u"Chaque poste est directement lié à la production de contenu et à l'acquisition client.",
-         page=22)
-ICO = lambda n: os.path.join(IMG, "tools", n)
-SOC = os.path.join(ROOT, "assets", "img", "icons")
-
-# ---- Colonne 1 : equipements
-card(s, 52, 164, 420, 178)
-s.rect(52, 164, 420, 4, fill=TURQUOISE, radius=2)
-s.text(u"ÉQUIPEMENTS DE PRODUCTION", 74, 180, 300, size=8, font=POP, bold=True,
-       color=TURQUOISE, spacing=1.4)
-s.text(u"1 020 000 FCFA", 320, 179, 130, size=9.5, font=POP, bold=True,
-       color=VERT_FONCE, align="r")
-equip = [(u"Ordinateur portable", u"Montage vidéo, design et reporting", u"450 000"),
-         (u"Smartphone photo/vidéo", u"Captation terrain chez les producteurs", u"350 000"),
-         (u"Trépied + stabilisateur", u"Vidéos stables en extérieur", u"60 000"),
-         (u"Disque dur externe 1 To", u"Archivage des contenus clients", u"60 000"),
-         (u"Kit éclairage LED", u"Photo produit et interviews", u"55 000"),
-         (u"Micro-cravate sans fil", u"Témoignages et interviews terrain", u"45 000")]
-for i, (t, d, m) in enumerate(equip):
-    y = 202 + i * 23
-    s.rect(74, y + 6, 5, 5, fill=TURQUOISE, radius=2.5)
-    s.text(t, 88, y, 210, size=8.6, font=POP, bold=True, color=TRES_FONCE)
-    s.text(d, 88, y + 11, 240, size=6.8, font=POP, color=OLIVE)
-    s.text(m, 372, y + 3, 78, size=8.4, font=POP, bold=True, color=VERT_FONCE, align="r")
-
-# ---- Colonne 2 : abonnements
-card(s, 488, 164, 420, 178)
-s.rect(488, 164, 420, 4, fill=VERT_FONCE, radius=2)
-s.text(u"ABONNEMENTS & OUTILS — 12 MOIS", 510, 180, 320, size=8, font=POP, bold=True,
-       color=VERT_FONCE, spacing=1.4)
-s.text(u"305 000 FCFA", 756, 179, 130, size=9.5, font=POP, bold=True,
-       color=VERT_FONCE, align="r")
-abos = [(ICO("pub.png"), u"Meta Business — budget publicitaire",
-         u"Campagnes de test et acquisition B2B", u"150 000"),
-        (ICO("site.png"), u"Hébergement + nom de domaine",
-         u"Mise en ligne du site vitrine", u"60 000"),
-        (ICO("canva.png"), u"Canva Pro",
-         u"Marque, gabarits et exports HD", u"55 000"),
-        (ICO("capcut.png"), u"CapCut Pro",
-         u"Montage sans filigrane, sous-titres auto", u"40 000")]
-for i, (ic, t, d, m) in enumerate(abos):
-    y = 204 + i * 34
-    s.image(ic, 510, y, 22, 22)
-    s.text(t, 542, y, 220, size=8.8, font=POP, bold=True, color=TRES_FONCE)
-    s.text(d, 542, y + 12, 240, size=6.8, font=POP, color=OLIVE)
-    s.text(m, 808, y + 4, 78, size=8.4, font=POP, bold=True, color=VERT_FONCE, align="r")
-
-# ---- Colonne 3 : formations
-card(s, 52, 358, 420, 120)
-s.rect(52, 358, 420, 4, fill=OLIVE, radius=2)
-s.text(u"FORMATIONS PROFESSIONNELLES", 74, 374, 300, size=8, font=POP, bold=True,
-       color=OLIVE, spacing=1.4)
-s.text(u"275 000 FCFA", 320, 373, 130, size=9.5, font=POP, bold=True,
-       color=VERT_FONCE, align="r")
-forms = [(u"Analytics & data", u"Mesurer la performance, prouver le ROI client", u"100 000"),
-         (u"Marketing B2B", u"Vendre à des dirigeants d'entreprise", u"100 000"),
-         (u"Acquisition client", u"Prospection structurée et closing", u"75 000")]
-for i, (t, d, m) in enumerate(forms):
-    y = 396 + i * 26
-    s.rect(74, y + 6, 5, 5, fill=OLIVE, radius=2.5)
-    s.text(t, 88, y, 210, size=8.8, font=POP, bold=True, color=TRES_FONCE)
-    s.text(d, 88, y + 12, 250, size=6.8, font=POP, color=OLIVE)
-    s.text(m, 372, y + 4, 78, size=8.4, font=POP, bold=True, color=VERT_FONCE, align="r")
-
-# ---- Colonne 4 : site vitrine
-s.rect(488, 358, 420, 120, fill=VERT_FONCE, radius=9)
-s.image(ICO("site.png"), 510, 376, 26, 26)
-s.text(u"SITE VITRINE PROFESSIONNEL", 546, 378, 260, size=8, font=POP, bold=True,
-       color=TURQUOISE, spacing=1.4)
-s.text(u"250 000 FCFA", 756, 377, 130, size=9.5, font=POP, bold=True,
-       color=BLANC, align="r")
-s.text(u"Une vitrine qui présente les offres, les réalisations et les études de cas, "
-       u"avec formulaire de devis — pour convertir la visibilité en demandes entrantes.",
-       510, 408, 376, size=8.4, font=POP, color=GRISE, leading=1.5)
-for i, tag in enumerate([u"Offres & tarifs", u"Portfolio clients", u"Formulaire de devis"]):
-    x = 510 + i * 126
-    s.rect(x, 448, 116, 18, fill=TURQUOISE, radius=9)
-    s.text(tag, x, 452, 116, size=7, font=POP, bold=True, color=BLANC, align="c")
-
-s.rect(52, 488, 400, 24, fill=VERT_FONCE, radius=12)
-s.text(u"TOTAL DEMANDÉ : 1 850 000 FCFA", 52, 495, 400, size=9.5, font=POP,
-       bold=True, color=BLANC, align="c", spacing=0.6)
+       52, 428, 856, size=13, font=ALFA, color=VERT_FONCE, align="c")
 
 # ============================================================== 23 MERCI
 s = new("Merci")
