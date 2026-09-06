@@ -838,97 +838,109 @@ s.bullets([u"Un tableau par client", u"Calendrier éditorial partagé",
           mcolor=TURQUOISE, leading=1.4)
 
 # ============================================================== 20 AMBITIONS
-s = new(u"Réalisations & ambitions")
-titlebar(s, u"Traction", u"Étapes Franchies & Ambitions",
-         u"Ce que j'ai déjà accompli — et où je veux aller.", page=20)
-done = [(u"Formalisation de l'entreprise", u"NINEA + Registre de commerce"),
-        (u"Identité visuelle complète", u"Logo, charte, bannière, carte de visite"),
-        (u"Présence digitale opérationnelle", u"Site portfolio + pages LinkedIn et Facebook"),
-        (u"Formation Community Management", u"7 semaines — Design & CM, Simplon Sénégal"),
-        (u"Formation en agriculture", u"Licence en Agronomie — UCAD")]
-goals = [u"Acquérir mes premiers clients agro-industriels",
-         u"Développer un portefeuille de clients réguliers",
-         u"Renforcer mon expertise en publicité en ligne",
-         u"Structurer une offre de production vidéo terrain",
-         u"Faire de Sadiya Digital Agri une agence reconnue"]
-s.rect(52, 164, 420, 30, fill=VERT_FONCE, radius=6)
-s.text(u"CE QUE J'AI DÉJÀ ACCOMPLI", 72, 173, 380, size=9.5, font=POP,
-       bold=True, color=TURQUOISE, spacing=1.2)
-for i, (t, d) in enumerate(done):
-    y = 202 + i * 56
-    card(s, 52, y, 420, 48, fill=BLANC)
-    checkmark(s, 70, y + 15, 18)
-    s.text(t, 100, y + 10, 356, size=10, font=POP, bold=True, color=VERT_FONCE)
-    s.text(d, 100, y + 27, 356, size=8.2, font=POP, color=OLIVE)
-s.rect(488, 164, 420, 30, fill=TURQUOISE, radius=6)
-s.text(u"MES OBJECTIFS (6–12 MOIS)", 508, 173, 380, size=9.5, font=POP,
-       bold=True, color=BLANC, spacing=1.2)
-for i, g in enumerate(goals):
-    y = 202 + i * 56
-    card(s, 488, y, 420, 48, fill=BLANC)
-    s.rect(488, y, 4, 48, fill=SAFRAN, radius=2)
-    numbadge(s, 508, y + 14, str(i + 1), d=20, fill=VERT_FONCE, size=8.5)
-    s.text(g, 540, y + 17, 356, size=10, font=POP, bold=True, color=TRES_FONCE)
+s = new(u"Ambitions")
+titlebar(s, u"Vision", u"Ambitions",
+         u"Où je veux emmener Sadiya Digital Agri dans les 12 prochains mois.",
+         page=20)
+amb = [
+    (u"1", u"Acquérir mes premiers\nclients agro-industriels",
+     u"Signer 5 contrats avec des PME agroalimentaires sénégalaises.",
+     u"0–6 mois", TURQUOISE),
+    (u"2", u"Développer un portefeuille\nde clients réguliers",
+     u"Passer d'une logique de mission ponctuelle à l'abonnement récurrent.",
+     u"6–9 mois", VERT_FONCE),
+    (u"3", u"Renforcer mon expertise\nen publicité en ligne",
+     u"Maîtriser Meta Ads et l'analytics pour prouver le ROI de chaque campagne.",
+     u"6–9 mois", OLIVE),
+    (u"4", u"Structurer une offre de\nproduction vidéo terrain",
+     u"Filmer du champ à l'assiette : le format qui valorise le mieux le local.",
+     u"9–12 mois", TURQUOISE),
+    (u"5", u"Faire de Sadiya Digital Agri\nune agence reconnue",
+     u"Devenir la référence de la communication digitale agroalimentaire au Sénégal.",
+     u"12 mois +", VERT_FONCE),
+]
+# --- Les 3 premieres en cartes hautes
+for i, (n, t, d, ech, c) in enumerate(amb[:3]):
+    x = 52 + i * 288
+    card(s, x, 166, 268, 172)
+    s.rect(x, 166, 268, 4, fill=c, radius=2)
+    s.ellipse(x + 22, y_ := 186, 34, 34, fill=c, alpha=0.15)
+    s.text(n, x + 22, 195, 34, size=15, font=ALFA, color=c, align="c")
+    s.text(t.replace("\n", " "), x + 22, 232, 226, size=12.5, font=POP, bold=True,
+           color=VERT_FONCE, leading=1.3)
+    s.line(x + 22, 282, x + 246, 282, color=GRISE_CLAIR, lw=1)
+    s.text(d, x + 22, 292, 228, size=8.4, font=POP, color=OLIVE, leading=1.45)
+    s.rect(x + 190, 176, 66, 18, fill=c, radius=9)
+    s.text(ech, x + 190, 180, 66, size=7, font=POP, bold=True, color=BLANC, align="c")
+# --- Les 2 dernieres, format large
+for i, (n, t, d, ech, c) in enumerate(amb[3:]):
+    x = 52 + i * 440
+    card(s, x, 352, 420, 76)
+    s.rect(x, 352, 4, 76, fill=c, radius=2)
+    numbadge(s, x + 20, 366, n, d=26, fill=c, size=11)
+    s.rect(x + 344, 364, 62, 17, fill=c, radius=8.5)
+    s.text(ech, x + 344, 368, 62, size=7, font=POP, bold=True, color=BLANC, align="c")
+    s.text(t.replace("\n", " "), x + 58, 366, 278, size=11, font=POP, bold=True,
+           color=VERT_FONCE, leading=1.25)
+    s.text(d, x + 58, 400, 344, size=8.2, font=POP, color=OLIVE, leading=1.4)
+# --- Cap final
+s.rect(52, 444, 856, 40, fill=VERT_FONCE, radius=9)
+s.text(u"LE CAP", 76, 456, 70, size=8, font=POP, bold=True, color=TURQUOISE, spacing=1.4)
+s.text(u"Faire des produits agroalimentaires sénégalais une référence digitale — "
+       u"visibles, désirables et vendus en ligne.",
+       142, 455, 740, size=10.5, font=POP, bold=True, color=BLANC)
 
 # ============================================================== 21 CTA
 s = new(u"Appel à l'action")
-s.rect(0, 0, W, H, fill=VERT_FONCE)
-s.rect(0, 0, 6, H, fill=TURQUOISE)
-dots(s, 856, 56, 8, 7, step=11, r=2.0, color=TURQUOISE, alpha=0.5, fade=True)
-s.poly([(0, 470), (200, 470), (140, 540), (0, 540)], fill=TURQUOISE, alpha=0.25)
-s.rect(52, 44, 3.5, 13, fill=TURQUOISE)
-s.text(u"CE DONT J'AI BESOIN", 63, 44, 400, size=8.5, font=POP, bold=True,
-       color=TURQUOISE, spacing=1.9)
-s.text(u"Appel à l'Action", 52, 62, 600, size=34, font=ALFA, color=BLANC)
-s.text(u"De quoi ai-je besoin pour faire grandir Sadiya Digital Agri ?",
-       52, 116, 620, size=12, font=POP, color=GRISE)
-s.image(LOGOW, 830, 40, 92, 28)
+titlebar(s, u"Ce dont j'ai besoin", u"Appel à l'Action",
+         u"De quoi ai-je besoin pour faire grandir Sadiya Digital Agri ?",
+         page=21)
 
 # --- Le montant demande
-s.rect(52, 152, 268, 132, fill=TURQUOISE, radius=10)
-s.text(u"FINANCEMENT DEMANDÉ", 74, 172, 230, size=8, font=POP, bold=True,
-       color=BLANC, spacing=1.5)
-s.text(u"1 850 000", 74, 194, 230, size=32, font=ALFA, color=BLANC)
-s.text(u"FCFA", 74, 236, 230, size=11, font=POP, bold=True, color=VERT_FONCE)
-s.line(74, 258, 298, 258, color=BLANC, lw=0.8, alpha=0.45)
+s.rect(52, 164, 268, 132, fill=VERT_FONCE, radius=10)
+s.text(u"FINANCEMENT DEMANDÉ", 74, 184, 230, size=8, font=POP, bold=True,
+       color=TURQUOISE, spacing=1.5)
+s.text(u"1 850 000", 74, 206, 230, size=32, font=ALFA, color=BLANC)
+s.text(u"FCFA", 74, 248, 230, size=11, font=POP, bold=True, color=TURQUOISE)
+s.line(74, 270, 298, 270, color=TURQUOISE, lw=0.8, alpha=0.55)
 s.text(u"Soit environ 2 820 € — décaissement sur 12 mois",
-       74, 264, 232, size=7.6, font=POP, color=BLANC)
+       74, 276, 232, size=7.6, font=POP, color=GRISE)
 
 # --- Repartition du financement
-posts = [(u"Équipements de production", u"1 020 000", 1.00),
-         (u"Abonnements & outils (12 mois)", u"305 000", 0.30),
-         (u"Formations professionnelles", u"275 000", 0.27),
-         (u"Site vitrine professionnel", u"250 000", 0.25)]
-s.text(u"RÉPARTITION DU FINANCEMENT", 344, 158, 400, size=8, font=POP, bold=True,
+posts = [(u"Équipements de production", u"1 020 000", 1.00, TURQUOISE),
+         (u"Abonnements & outils (12 mois)", u"305 000", 0.30, VERT_FONCE),
+         (u"Formations professionnelles", u"275 000", 0.27, OLIVE),
+         (u"Site vitrine professionnel", u"250 000", 0.25, TURQUOISE)]
+s.text(u"RÉPARTITION DU FINANCEMENT", 344, 170, 400, size=8, font=POP, bold=True,
        color=TURQUOISE, spacing=1.5)
-for i, (lbl, montant, frac) in enumerate(posts):
-    y = 180 + i * 27
-    s.text(lbl, 344, y, 250, size=9, font=POP, color=BLANC)
-    s.rect(596, y + 2, 200, 9, fill=BLANC, alpha=0.15, radius=4.5)
-    s.rect(596, y + 2, 200 * frac, 9, fill=TURQUOISE, radius=4.5)
-    s.text(montant, 808, y, 100, size=9, font=POP, bold=True, color=BLANC, align="r")
-s.line(344, 292, 908, 292, color=TURQUOISE, lw=0.8, alpha=0.5)
-s.text(u"TOTAL", 344, 298, 200, size=9.5, font=POP, bold=True, color=TURQUOISE)
-s.text(u"1 850 000 FCFA", 708, 298, 200, size=9.5, font=POP, bold=True,
+for i, (lbl, montant, frac, c) in enumerate(posts):
+    y = 192 + i * 27
+    s.text(lbl, 344, y, 250, size=9, font=POP, color=TRES_FONCE)
+    s.rect(596, y + 2, 200, 9, fill=GRISE_CLAIR, radius=4.5)
+    s.rect(596, y + 2, 200 * frac, 9, fill=c, radius=4.5)
+    s.text(montant, 808, y, 100, size=9, font=POP, bold=True, color=VERT_FONCE,
+           align="r")
+s.line(344, 304, 908, 304, color=GRISE_CLAIR, lw=1)
+s.text(u"TOTAL", 344, 310, 200, size=9.5, font=POP, bold=True, color=VERT_FONCE)
+s.text(u"1 850 000 FCFA", 708, 310, 200, size=9.5, font=POP, bold=True,
        color=TURQUOISE, align="r")
 
 # --- Besoins non financiers
-s.text(u"AU-DELÀ DU FINANCEMENT", 52, 330, 400, size=8, font=POP, bold=True,
-       color=TURQUOISE, spacing=1.5)
-needs = [(u"Accompagnement", u"Mentorat business : structuration\nde l'offre, pricing et gestion"),
-         (u"Partenariat", u"Accès aux réseaux et fédérations\nagro-industriels du Sénégal"),
-         (u"Visibilité", u"Références, recommandations\net premiers clients pilotes")]
-for i, (t, d) in enumerate(needs):
+s.text(u"AU-DELÀ DU FINANCEMENT", 52, 344, 400, size=8, font=POP, bold=True,
+       color=OLIVE, spacing=1.5)
+needs = [(u"Accompagnement", u"Mentorat business : structuration\nde l'offre, pricing et gestion", TURQUOISE),
+         (u"Partenariat", u"Accès aux réseaux et fédérations\nagro-industriels du Sénégal", VERT_FONCE),
+         (u"Visibilité", u"Références, recommandations\net premiers clients pilotes", OLIVE)]
+for i, (t, d, c) in enumerate(needs):
     x = 52 + i * 288
-    s.rect(x, 352, 268, 84, fill=BLANC, alpha=0.08, radius=9)
-    s.rect(x, 352, 4, 84, fill=TURQUOISE, radius=2)
-    s.text(t, x + 22, 366, 220, size=13, font=POP, bold=True, color=BLANC)
-    s.text(d, x + 22, 390, 228, size=8.4, font=POP, color=GRISE, leading=1.45)
+    card(s, x, 366, 268, 84)
+    s.rect(x, 366, 4, 84, fill=c, radius=2)
+    s.text(t, x + 22, 380, 220, size=13, font=POP, bold=True, color=VERT_FONCE)
+    s.text(d, x + 22, 404, 228, size=8.4, font=POP, color=OLIVE, leading=1.45)
 
 s.text(u"« Avec votre soutien, mon activité peut créer plus d'impact "
        u"et d'opportunités. »",
-       52, 456, 856, size=13, font=ALFA, color=TURQUOISE, align="c")
-footer(s, dark=True, page=21)
+       52, 466, 856, size=13, font=ALFA, color=VERT_FONCE, align="c")
 
 # ============================================================== 22 BUDGET DETAILLE
 s = new(u"Détail du financement")
