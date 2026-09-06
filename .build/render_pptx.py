@@ -146,13 +146,16 @@ def render(slides, path):
                                                 P(y + o["size"] * 0.45 - 5.2), P(10.4), P(10.4))
                         d.fill.solid(); d.fill.fore_color.rgb = RGB(o["mcolor"])
                         _noline(d); d.shadow.inherit = False
-                        tfd = d.text_frame
-                        tfd.margin_left = tfd.margin_right = 0
-                        tfd.margin_top = tfd.margin_bottom = 0
-                        pr = tfd.paragraphs[0]; pr.alignment = PP_ALIGN.CENTER
-                        rr = pr.add_run(); rr.text = u"\u2713"
-                        rr.font.size = Pt(7); rr.font.bold = True
-                        rr.font.color.rgb = RGB("FFFFFF"); rr.font.name = POP
+                        # coche dessinee (le glyphe peut manquer selon la police)
+                        from pptx.enum.shapes import MSO_CONNECTOR
+                        cy = y + o["size"] * 0.45
+                        for (ax, ay, bx, by) in (
+                                (o["x"] + 2.4, cy + 0.2, o["x"] + 4.4, cy + 2.4),
+                                (o["x"] + 4.4, cy + 2.4, o["x"] + 7.8, cy - 2.6)):
+                            ln = sl.shapes.add_connector(MSO_CONNECTOR.STRAIGHT,
+                                                         P(ax), P(ay), P(bx), P(by))
+                            ln.line.color.rgb = RGB("FFFFFF")
+                            ln.line.width = Pt(1.3)
                         tx, tw = o["x"] + 16, o["w"] - 16
                     else:
                         tx, tw = o["x"], o["w"]

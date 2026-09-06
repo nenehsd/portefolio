@@ -69,6 +69,14 @@ def titlebar(s, kicker, title, sub=None, page=None, accent=TURQUOISE):
     footer(s, page=page)
 
 
+def checkmark(s, cx, cy, d=18, fill=TURQUOISE, col=BLANC):
+    """Pastille ronde avec une coche dessinee (pas de glyphe)."""
+    s.ellipse(cx, cy, d, d, fill=fill)
+    r = d / 18.0
+    s.line(cx + 4.6 * r, cy + 9.2 * r, cx + 7.6 * r, cy + 12.4 * r, color=col, lw=1.7 * r)
+    s.line(cx + 7.6 * r, cy + 12.4 * r, cx + 13.4 * r, cy + 5.8 * r, color=col, lw=1.7 * r)
+
+
 def card(s, x, y, w, h, fill=BLANC, line=GRISE_CLAIR, radius=9, lw=1.0):
     s.rect(x, y, w, h, fill=fill, line=line, lw=lw, radius=radius)
 
@@ -370,9 +378,12 @@ for i, (w_, ok) in enumerate([(u"Professionnel", 1), (u"Chaleureux", 1),
                               (u"Ton agressif", 0)]):
     y = 334 + i * 20
     c = TURQUOISE if ok else "C4453F"
-    s.ellipse(636, y + 2, 9, 9, fill=c)
-    s.text(u"✓" if ok else u"✕", 636, y + 3.4, 9, size=6, font=POP, bold=True,
-           color=BLANC, align="c")
+    if ok:
+        checkmark(s, 636, y + 1, 11, fill=c)
+    else:
+        s.ellipse(636, y + 1, 11, 11, fill=c)
+        s.line(638.4, y + 3.4, 644.6, y + 9.6, color=BLANC, lw=1.4)
+        s.line(644.6, y + 3.4, 638.4, y + 9.6, color=BLANC, lw=1.4)
     s.text(w_, 652, y, 240, size=9, font=POP, color=TRES_FONCE if ok else OLIVE)
 
 # ============================================================== 10 STRATEGY
@@ -544,11 +555,47 @@ s.text(u"Chaque semaine : identifier les contenus performants.   |   "
        u"Chaque mois : comparer aux objectifs et ajuster.",
        76, 442, 500, size=9.6, font=POP, color=BLANC, leading=1.45)
 
-# ============================================================== 14 MODELE ECO
-s = new("Modèle économique")
+# ============================================================== 14 MODELE ECO — vue d'ensemble
+s = new(u"Modèle économique — vue d'ensemble")
 titlebar(s, u"Business model", u"Modèle Économique",
-         u"Trois offres d'abonnement mensuel, plus des prestations à la demande.",
+         u"Comment Sadiya Digital Agri crée, délivre et capture de la valeur.",
          page=14)
+blocks = [
+    (u"Proposition\nde valeur", TURQUOISE,
+     [u"Communication digitale spécialisée agro", u"Double expertise agriculture + digital",
+      u"Produits locaux rendus visibles et attractifs"]),
+    (u"Clients", VERT_FONCE,
+     [u"PME agroalimentaires sénégalaises", u"Coopératives & GIE de producteurs",
+      u"Grandes industries (cible secondaire)"]),
+    (u"Canaux", OLIVE,
+     [u"LinkedIn : prospection B2B directe", u"Facebook : communauté et offre",
+      u"TikTok : portée et notoriété"]),
+    (u"Sources de\nrevenus", TURQUOISE,
+     [u"Abonnements mensuels récurrents", u"Prestations ponctuelles à la demande",
+      u"Campagnes publicitaires gérées"]),
+    (u"Ressources\nclés", VERT_FONCE,
+     [u"Compétences agro + community management", u"Canva, CapCut, Meta Suite, TikTok Studio",
+      u"Identité de marque et site portfolio"]),
+    (u"Structure\nde coûts", OLIVE,
+     [u"Outils en version gratuite au démarrage", u"Connexion, déplacements terrain",
+      u"Budget publicitaire refacturé au client"]),
+]
+for i, (t, col, its) in enumerate(blocks):
+    x = 52 + (i % 3) * 288
+    y = 168 + (i // 3) * 156
+    card(s, x, y, 268, 140)
+    s.rect(x, y, 268, 4, fill=col, radius=2)
+    s.text(t.replace("\n", " "), x + 20, y + 18, 230, size=12.5, font=POP, bold=True,
+           color=VERT_FONCE)
+    s.line(x + 20, y + 42, x + 248, y + 42, color=GRISE_CLAIR, lw=1)
+    s.bullets(its, x + 20, y + 54, 232, size=8.4, color=TRES_FONCE, gap=6,
+              marker="dot", mcolor=col, leading=1.4)
+
+# ============================================================== 15 OFFRES
+s = new(u"Nos offres")
+titlebar(s, u"Business model", u"Nos Offres d'Abonnement",
+         u"Trois formules mensuelles, plus des prestations à la demande.",
+         page=15)
 offers = [
     (u"ESSENTIEL", u"75 000", [u"8 publications / mois", u"Visuels personnalisés",
                                u"Gestion de communauté"], False, GRISE),
@@ -559,36 +606,87 @@ offers = [
 ]
 for i, (n, p, feats, hl, c) in enumerate(offers):
     x = 52 + i * 288
-    y = 166 if not hl else 156
-    h = 216 if not hl else 236
+    y = 172 if not hl else 162
+    h = 208 if not hl else 228
     card(s, x, y, 268, h, fill=VERT_FONCE if hl else BLANC,
          line=TURQUOISE if hl else GRISE_CLAIR, lw=1.6 if hl else 1.0)
     if hl:
         s.rect(x + 88, y - 11, 92, 22, fill=TURQUOISE, radius=11)
         s.text(u"RECOMMANDÉ", x + 88, y - 6, 92, size=7.4, font=POP, bold=True,
                color=BLANC, align="c", spacing=0.8)
-    s.text(n, x + 22, y + 24, 220, size=11, font=POP, bold=True,
+    s.text(n, x + 22, y + 22, 220, size=11, font=POP, bold=True,
            color=TURQUOISE if hl else c, spacing=1.8)
-    s.text(p, x + 22, y + 44, 220, size=30, font=ALFA, color=BLANC if hl else VERT_FONCE)
-    s.text(u"FCFA / mois", x + 22, y + 86, 220, size=8.6, font=POP,
+    s.text(p, x + 22, y + 42, 220, size=30, font=ALFA, color=BLANC if hl else VERT_FONCE)
+    s.text(u"FCFA / mois", x + 22, y + 84, 220, size=8.6, font=POP,
            color=GRISE if hl else OLIVE)
-    s.line(x + 22, y + 108, x + 246, y + 108, color=TURQUOISE if hl else GRISE_CLAIR, lw=1)
-    s.bullets(feats, x + 22, y + 122, 226, size=9.2,
+    s.line(x + 22, y + 104, x + 246, y + 104, color=TURQUOISE if hl else GRISE_CLAIR, lw=1)
+    s.bullets(feats, x + 22, y + 118, 226, size=9.2,
               color=BLANC if hl else TRES_FONCE, gap=10, marker="check",
               mcolor=TURQUOISE if hl else VERT_FONCE)
-s.rect(52, 412, 856, 62, fill=CREME, line=TURQUOISE, radius=9)
-s.rect(52, 412, 5, 62, fill=SAFRAN, radius=2)
-s.text(u"REVENUS COMPLÉMENTAIRES", 76, 428, 300, size=8.5, font=POP, bold=True,
+s.rect(52, 404, 856, 44, fill=CREME, line=TURQUOISE, radius=9)
+s.rect(52, 404, 5, 44, fill=SAFRAN, radius=2)
+s.text(u"REVENUS COMPLÉMENTAIRES", 76, 412, 300, size=8, font=POP, bold=True,
        color=TURQUOISE, spacing=1.5)
-s.text(u"Création de contenus à la demande, campagnes publicitaires et prestations "
-       u"ponctuelles de stratégie digitale — à partir de 25 000 FCFA.",
-       76, 446, 780, size=10, font=POP, color=TRES_FONCE)
+s.text(u"Contenus à la demande, campagnes publicitaires et stratégie ponctuelle "
+       u"— à partir de 25 000 FCFA.",
+       76, 426, 780, size=9.5, font=POP, color=TRES_FONCE)
+s.text(u"Paiement mensuel d'avance  ·  engagement 3 mois minimum  ·  devis sur mesure "
+       u"au-delà de 16 publications",
+       52, 460, 856, size=8.6, font=POP, italic=True, color=OLIVE, align="c")
 
-# ============================================================== 15 CONCURRENCE
+# ============================================================== 16 PROJECTIONS
+s = new(u"Rentabilité & projections")
+titlebar(s, u"Business model", u"Rentabilité & Projections",
+         u"Un point mort atteignable dès le troisième client régulier.",
+         page=16)
+kpis = [(u"85 000", u"FCFA", u"Charges mensuelles estimées", OLIVE),
+        (u"3", u"clients", u"Seuil de rentabilité (offre Pro)", TURQUOISE),
+        (u"450 000", u"FCFA", u"Revenu mensuel visé à 6 mois", VERT_FONCE),
+        (u"5,4 M", u"FCFA", u"Chiffre d'affaires annualisé cible", TURQUOISE)]
+for i, (big, unit, lbl, c) in enumerate(kpis):
+    x = 52 + i * 216
+    card(s, x, 166, 196, 104)
+    s.rect(x, 166, 196, 4, fill=c, radius=2)
+    s.text(big, x + 18, 186, 160, size=25, font=ALFA, color=VERT_FONCE)
+    s.text(unit, x + 18, 220, 160, size=8.5, font=POP, bold=True, color=c)
+    s.text(lbl, x + 18, 238, 164, size=8, font=POP, color=OLIVE, leading=1.35)
+# scenario de montee en charge
+s.text(u"SCÉNARIO DE MONTÉE EN CHARGE", 52, 292, 400, size=8.5, font=POP, bold=True,
+       color=OLIVE, spacing=1.5)
+scen = [(u"Mois 1–3", u"2 clients", u"150 000", 0.28, GRISE),
+        (u"Mois 4–6", u"3 clients", u"450 000", 0.62, TURQUOISE),
+        (u"Mois 7–12", u"5 clients", u"750 000", 1.0, VERT_FONCE)]
+for i, (per, cl, rev, frac, c) in enumerate(scen):
+    y = 316 + i * 46
+    s.text(per, 52, y + 12, 80, size=9.5, font=POP, bold=True, color=TRES_FONCE)
+    s.text(cl, 138, y + 12, 70, size=9, font=POP, color=OLIVE)
+    s.rect(208, y + 8, 292, 22, fill=GRISE_CLAIR, radius=11)
+    s.rect(208, y + 8, 292 * frac, 22, fill=c, radius=11)
+    s.text(rev + u" FCFA/mois", 508, y + 12, 172, size=9, font=POP, bold=True,
+           color=VERT_FONCE)
+card(s, 700, 292, 208, 172)
+s.rect(700, 292, 208, 4, fill=SAFRAN, radius=2)
+s.text(u"CHARGES PRINCIPALES", 718, 308, 180, size=8, font=POP, bold=True,
+       color=VERT_FONCE, spacing=1.3)
+charges = [(u"Connexion internet", u"25 000"), (u"Déplacements terrain", u"20 000"),
+           (u"Outils & abonnements", u"20 000"), (u"Divers & imprévus", u"20 000")]
+for i, (k, v) in enumerate(charges):
+    y = 330 + i * 26
+    s.text(k, 718, y, 130, size=8.2, font=POP, color=TRES_FONCE)
+    s.text(v, 828, y, 62, size=8.2, font=POP, bold=True, color=OLIVE, align="r")
+s.line(718, 434, 890, 434, color=GRISE_CLAIR, lw=1)
+s.text(u"Total", 718, 442, 100, size=8.6, font=POP, bold=True, color=VERT_FONCE)
+s.text(u"85 000 FCFA", 788, 442, 102, size=8.6, font=POP, bold=True,
+       color=TURQUOISE, align="r")
+s.text(u"Hypothèses prudentes : outils en version gratuite, structure sans salarié, "
+       u"budget publicitaire refacturé au client.",
+       52, 482, 640, size=8.2, font=POP, italic=True, color=OLIVE)
+
+# ============================================================== 17 CONCURRENCE
 s = new("Marché & différenciation")
 titlebar(s, u"Benchmark", u"Concurrence & Différenciation",
          u"Un marché occupé par des généralistes — aucune agence spécialisée agro.",
-         page=15)
+         page=17)
 comp = [
     (u"Agence Kolonell", u"250–600 k FCFA/mois", u"Expert, axé résultats et stratégie"),
     (u"Agence WEDRAOGO", u"dès 130 k FCFA/mois", u"Professionnel, créatif et attractif"),
@@ -632,39 +730,147 @@ for i, (t, c, its) in enumerate(swot):
     s.bullets(its, x + 16, y + 42, 172, size=8.2, color=TRES_FONCE, gap=6,
               marker="dot", mcolor=c, leading=1.4)
 
-# ============================================================== 16 REALISATIONS
-s = new("Réalisations & ambitions")
-titlebar(s, u"Traction", u"Réalisations & Ambitions",
-         u"Ce que j'ai déjà accompli — et où je veux aller.", page=16)
+# ============================================================== 18 REALISATIONS — identite
+s = new(u"Réalisations — identité de marque")
+titlebar(s, u"Traction", u"Ce que j'ai déjà réalisé",
+         u"Une marque complète, construite de A à Z : logo, charte, bannière et carte de visite.",
+         page=18)
+# logo
+card(s, 52, 168, 268, 152)
+s.rect(52, 168, 268, 4, fill=TURQUOISE, radius=2)
+s.text(u"LOGO", 74, 184, 200, size=8, font=POP, bold=True, color=TURQUOISE, spacing=1.5)
+s.image(LOGO, 88, 208, 196, 79)
+s.text(u"Version horizontale couleur", 74, 296, 224, size=8, font=POP, color=OLIVE)
+# palette
+card(s, 336, 168, 268, 152)
+s.rect(336, 168, 268, 4, fill=VERT_FONCE, radius=2)
+s.text(u"PALETTE", 358, 184, 200, size=8, font=POP, bold=True, color=VERT_FONCE, spacing=1.5)
+pal = [(VERT_FONCE, u"#1F5E3A"), (TURQUOISE, u"#1AAB70"), (OLIVE, u"#42612D"),
+       (GRISE, u"#9FB8A2"), (TRES_FONCE, u"#0A1A01"), (BLANC, u"#FFFFFF")]
+for i, (c, code) in enumerate(pal):
+    x = 358 + (i % 3) * 78
+    y = 204 + (i // 3) * 48
+    s.rect(x, y, 62, 32, fill=c, line=GRISE_CLAIR if c == BLANC else None, radius=6)
+    s.text(code, x, y + 34, 62, size=6.2, font=POP, color=OLIVE, align="c")
+s.text(u"6 couleurs officielles", 358, 302, 224, size=8, font=POP, color=OLIVE)
+# typographie
+card(s, 620, 168, 288, 152)
+s.rect(620, 168, 288, 4, fill=OLIVE, radius=2)
+s.text(u"TYPOGRAPHIE", 642, 184, 200, size=8, font=POP, bold=True, color=OLIVE, spacing=1.5)
+s.text(u"Sadiya", 642, 204, 240, size=22, font=ALFA, color=VERT_FONCE)
+s.text(u"Alfa Slab One — titres", 642, 236, 240, size=7.6, font=POP, color=OLIVE)
+s.text(u"Digital Agri", 642, 252, 240, size=17, font=POP, bold=True, color=TURQUOISE)
+s.text(u"Poppins — sous-titres et textes", 642, 280, 240, size=7.6, font=POP, color=OLIVE)
+s.text(u"Hiérarchie à 3 niveaux", 642, 300, 240, size=8, font=POP, color=OLIVE)
+# banniere
+card(s, 52, 336, 552, 130)
+s.rect(52, 336, 552, 4, fill=TURQUOISE, radius=2)
+s.text(u"BANNIÈRE RÉSEAUX SOCIAUX", 74, 352, 300, size=8, font=POP, bold=True,
+       color=TURQUOISE, spacing=1.5)
+s.image(IM("banniere.png"), 74, 372, 508, 82)
+# carte de visite
+card(s, 620, 336, 288, 130)
+s.rect(620, 336, 288, 4, fill=VERT_FONCE, radius=2)
+s.text(u"CARTE DE VISITE", 642, 352, 250, size=8, font=POP, bold=True,
+       color=VERT_FONCE, spacing=1.5)
+s.image(IM("carte_visite.png"), 642, 374, 244, 68)
+
+# ============================================================== 19 REALISATIONS — presence digitale
+s = new(u"Réalisations — présence digitale & outils")
+titlebar(s, u"Traction", u"Présence Digitale & Outils Maîtrisés",
+         u"Des canaux actifs, un site portfolio en ligne et une gestion de projet outillée.",
+         page=19)
+ICO = lambda n: os.path.join(IMG, "tools", n)
+SOC = os.path.join(ROOT, "assets", "img", "icons")
+
+# --- Canaux en ligne
+s.text(u"CANAUX EN LIGNE", 52, 164, 400, size=8.5, font=POP, bold=True,
+       color=TURQUOISE, spacing=1.5)
+channels = [
+    (ICO("site.png"), u"Site portfolio", u"nene-hsd.vercel.app", u"En ligne"),
+    (os.path.join(SOC, "linkedin.png"), u"Page pro LinkedIn", u"/company/sadiyadigitalagri", u"Active"),
+    (os.path.join(SOC, "facebook.png"), u"Page Facebook", u"/sadiyadigitalagri", u"Active"),
+    (ICO("pub.png"), u"Meta Business Suite", u"Page pub & programmation", u"Configurée"),
+]
+for i, (ic, t, d, st) in enumerate(channels):
+    x = 52 + i * 216
+    card(s, x, 186, 196, 118)
+    s.rect(x, 186, 196, 4, fill=TURQUOISE, radius=2)
+    s.image(ic, x + 18, 204, 34, 34)
+    s.text(t, x + 18, 248, 164, size=10, font=POP, bold=True, color=VERT_FONCE)
+    s.text(d, x + 18, 264, 168, size=7.4, font=POP, color=OLIVE, leading=1.35)
+    s.rect(x + 18, 282, 58, 15, fill=TURQUOISE, radius=7.5)
+    s.text(st, x + 18, 285, 58, size=6.6, font=POP, bold=True, color=BLANC, align="c")
+
+# --- Autres reseaux
+s.text(u"AUSSI PRÉSENTE SUR", 52, 320, 300, size=8, font=POP, bold=True,
+       color=OLIVE, spacing=1.4)
+for i, (f, lbl) in enumerate([("instagram.png", u"Instagram"), ("tiktok.png", u"TikTok"),
+                              ("whatsapp.png", u"WhatsApp Business"), ("email.png", u"Email pro")]):
+    x = 52 + i * 108
+    s.rect(x, 340, 96, 30, fill=BLANC, line=GRISE_CLAIR, radius=15)
+    s.image(os.path.join(SOC, f), x + 9, 347, 16, 16)
+    s.text(lbl, x + 30, 350, 62, size=7, font=POP, bold=True, color=VERT_FONCE)
+
+# --- Outils maitrises
+s.text(u"OUTILS MAÎTRISÉS", 52, 388, 300, size=8.5, font=POP, bold=True,
+       color=TURQUOISE, spacing=1.5)
+tools = [(ICO("canva.png"), u"Canva", u"Visuels & carrousels"),
+         (ICO("capcut.png"), u"CapCut", u"Montage vidéo"),
+         (ICO("trello.png"), u"Trello", u"Suivi de projet"),
+         (ICO("charte.png"), u"Charte", u"Identité visuelle")]
+for i, (ic, t, d) in enumerate(tools):
+    x = 52 + i * 138
+    card(s, x, 410, 126, 62)
+    s.image(ic, x + 12, 424, 30, 30)
+    s.text(t, x + 50, 424, 70, size=9.4, font=POP, bold=True, color=VERT_FONCE)
+    s.text(d, x + 50, 439, 74, size=6.8, font=POP, color=OLIVE, leading=1.3)
+
+# --- Gestion de projet Trello (encart)
+s.rect(620, 320, 288, 152, fill=VERT_FONCE, radius=10)
+s.image(ICO("trello.png"), 642, 338, 30, 30)
+s.text(u"SUIVI DE PROJET", 682, 340, 200, size=8, font=POP, bold=True,
+       color=TURQUOISE, spacing=1.4)
+s.text(u"Trello", 682, 352, 200, size=14, font=ALFA, color=BLANC)
+s.bullets([u"Un tableau par client", u"Calendrier éditorial partagé",
+           u"Validation des contenus en ligne", u"Suivi des KPI et des livrables"],
+          642, 384, 250, size=8.2, color=BLANC, gap=6, marker="dot",
+          mcolor=TURQUOISE, leading=1.4)
+
+# ============================================================== 20 AMBITIONS
+s = new(u"Réalisations & ambitions")
+titlebar(s, u"Traction", u"Étapes Franchies & Ambitions",
+         u"Ce que j'ai déjà accompli — et où je veux aller.", page=20)
 done = [(u"Formalisation de l'entreprise", u"NINEA + Registre de commerce"),
-        (u"Identité visuelle Sadiya Digital Agri", u"Charte graphique + réseaux sociaux créés"),
+        (u"Identité visuelle complète", u"Logo, charte, bannière, carte de visite"),
+        (u"Présence digitale opérationnelle", u"Site portfolio + pages LinkedIn et Facebook"),
         (u"Formation Community Management", u"7 semaines — Design & CM, Simplon Sénégal"),
         (u"Formation en agriculture", u"Licence en Agronomie — UCAD")]
 goals = [u"Acquérir mes premiers clients agro-industriels",
          u"Développer un portefeuille de clients réguliers",
-         u"Renforcer mon expertise en stratégie digitale",
+         u"Renforcer mon expertise en publicité en ligne",
+         u"Structurer une offre de production vidéo terrain",
          u"Faire de Sadiya Digital Agri une agence reconnue"]
 s.rect(52, 164, 420, 30, fill=VERT_FONCE, radius=6)
 s.text(u"CE QUE J'AI DÉJÀ ACCOMPLI", 72, 173, 380, size=9.5, font=POP,
        bold=True, color=TURQUOISE, spacing=1.2)
 for i, (t, d) in enumerate(done):
-    y = 204 + i * 58
-    card(s, 52, y, 420, 50, fill=BLANC)
-    s.ellipse(70, y + 16, 18, 18, fill=TURQUOISE)
-    s.text(u"✓", 70, y + 20, 18, size=9, font=POP, bold=True, color=BLANC, align="c")
-    s.text(t, 100, y + 11, 356, size=10.2, font=POP, bold=True, color=VERT_FONCE)
-    s.text(d, 100, y + 28, 356, size=8.4, font=POP, color=OLIVE)
+    y = 202 + i * 56
+    card(s, 52, y, 420, 48, fill=BLANC)
+    checkmark(s, 70, y + 15, 18)
+    s.text(t, 100, y + 10, 356, size=10, font=POP, bold=True, color=VERT_FONCE)
+    s.text(d, 100, y + 27, 356, size=8.2, font=POP, color=OLIVE)
 s.rect(488, 164, 420, 30, fill=TURQUOISE, radius=6)
 s.text(u"MES OBJECTIFS (6–12 MOIS)", 508, 173, 380, size=9.5, font=POP,
        bold=True, color=BLANC, spacing=1.2)
 for i, g in enumerate(goals):
-    y = 204 + i * 58
-    card(s, 488, y, 420, 50, fill=BLANC)
-    s.rect(488, y, 4, 50, fill=SAFRAN, radius=2)
-    numbadge(s, 508, y + 15, str(i + 1), d=20, fill=VERT_FONCE, size=8.5)
-    s.text(g, 540, y + 18, 356, size=10.2, font=POP, bold=True, color=TRES_FONCE)
+    y = 202 + i * 56
+    card(s, 488, y, 420, 48, fill=BLANC)
+    s.rect(488, y, 4, 48, fill=SAFRAN, radius=2)
+    numbadge(s, 508, y + 14, str(i + 1), d=20, fill=VERT_FONCE, size=8.5)
+    s.text(g, 540, y + 17, 356, size=10, font=POP, bold=True, color=TRES_FONCE)
 
-# ============================================================== 17 CTA
+# ============================================================== 21 CTA
 s = new("Appel à l'action")
 s.rect(0, 0, W, H, fill=VERT_FONCE)
 s.rect(0, 0, 6, H, fill=TURQUOISE)
@@ -693,9 +899,9 @@ for i, (t, d) in enumerate(needs):
 s.text(u"« Avec votre soutien, mon activité peut créer plus d'impact "
        u"et d'opportunités. »",
        52, 434, 856, size=13, font=ALFA, color=TURQUOISE, align="c")
-footer(s, dark=True, page=17)
+footer(s, dark=True, page=21)
 
-# ============================================================== 18 MERCI
+# ============================================================== 22 MERCI
 s = new("Merci")
 s.rect(0, 0, W, H, fill=CREME)
 s.rect(0, 0, W, 330, fill=VERT_FONCE)
@@ -717,7 +923,7 @@ s.text(u"Sadiya Digital Agri accompagne les entreprises agroalimentaires sénég
        u"pour mieux communiquer, valoriser leurs produits et développer leur visibilité "
        u"grâce au digital.",
        190, 440, 580, size=9, font=POP, color=OLIVE, align="c", leading=1.55)
-footer(s, page=18)
+footer(s, page=22)
 
 
 # ------------------------------------------------------------------- BUILD
