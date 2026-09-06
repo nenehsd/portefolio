@@ -212,9 +212,10 @@ note(u"C'est le cœur de votre crédibilité. Ralentir sur « agriculture et dig
 section(u"4", u"La stratégie TOMSTER", u"Slides 6 à 13", u"1:55 → 2:50")
 dire(u"Pour y arriver, j'applique la méthode TOMSTER. Je vais vous en donner "
      u"l'essentiel.")
-dire(u"Ma cible, c'est Aminata : trente-six ans, directrice d'une PME de "
-     u"transformation de fruits et légumes à Dakar. Elle a de très bons produits, "
-     u"mais ni le temps ni les compétences pour les rendre visibles.")
+dire(u"Ma cible, c'est Aminata : trente-six ans, directrice générale d'une PME "
+     u"de transformation de fruits et légumes à Dakar. Elle a de très bons "
+     u"produits, mais ni le temps ni les compétences pour les rendre visibles. "
+     u"C'est elle que j'ai en tête à chaque contenu que je produis.")
 dire(u"Mes objectifs sont chiffrés : cinq cents abonnés qualifiés en trois mois, "
      u"trente demandes de renseignements et cinq contrats signés en six mois.")
 dire(u"Ma stratégie repose sur trois réseaux complémentaires : TikTok attire, "

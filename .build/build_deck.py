@@ -43,11 +43,13 @@ def sidelabel(s, color=GRISE):
            bold=True, color=color, spacing=1.6)
 
 
-def footer(s, dark=False, page=None, logos=True):
+def footer(s, dark=False, page=None, logos=False, mention=False):
+    """Pied de page : pagination seule. La mention et les logos partenaires
+    ne figurent que sur la couverture et la slide de remerciement."""
     col = BLANC if dark else VERT_FONCE
-    sub = GRISE if dark else GRISE
-    s.text(u"Programme de Pré-incubation 2026 de la\nfabrique 360 de Simplon Sénégal",
-           620, 500, 200, size=6.8, font=POP, color=sub, leading=1.35, align="r")
+    if mention:
+        s.text(u"Programme de Pré-incubation 2026 de la\nfabrique 360 de Simplon Sénégal",
+               620, 500, 200, size=6.8, font=POP, color=GRISE, leading=1.35, align="r")
     if logos:
         s.image(FOOTLOGOS, 838, 496, 88, 17)
     if page is not None:
@@ -185,7 +187,6 @@ s.text(u"Au Sénégal, des centaines de PME agroalimentaires produisent\n"
        u"d'excellents produits locaux… mais restent invisibles en ligne.",
        62, 392, 348, size=8.6, font=POP, color=OLIVE, leading=1.5)
 s.rect(0, 524, W, 16, fill=TURQUOISE)
-s.image(FOOTLOGOS, 62, 466, 96, 19)
 
 # ============================================================== 04 LA SOLUTION
 s = new(u"La Solution")
@@ -290,42 +291,33 @@ s = new("T — Target")
 titlebar(s, u"T · Target", u"À qui nous adressons-nous ?",
          u"Un marché B2B concentré, identifiable et joignable directement en ligne.",
          page=7)
-card(s, 52, 168, 420, 132)
-s.rect(52, 168, 420, 4, fill=TURQUOISE, radius=2)
-s.text(u"CIBLE PRINCIPALE", 74, 186, 300, size=10, font=POP, bold=True,
-       color=TURQUOISE, spacing=1.4)
-s.text(u"Dirigeants des PME agroalimentaires sénégalaises : marques locales, "
-       u"coopératives et unités artisanales.",
-       74, 210, 376, size=12, font=POP, color=TRES_FONCE, leading=1.55)
-card(s, 488, 168, 420, 132)
-s.rect(488, 168, 420, 4, fill=OLIVE, radius=2)
-s.text(u"CIBLE SECONDAIRE", 510, 186, 300, size=10, font=POP, bold=True,
-       color=OLIVE, spacing=1.4)
-s.text(u"Grandes entreprises et industries agroalimentaires, avec des budgets "
-       u"structurés et des enjeux de marque nationale.",
-       510, 210, 376, size=12, font=POP, color=TRES_FONCE, leading=1.55)
-# persona
-s.rect(52, 318, 856, 148, fill=VERT_FONCE, radius=11)
-s.ellipse(80, 344, 76, 76, fill=TURQUOISE, alpha=0.22)
-s.text(u"A", 80, 366, 76, size=30, font=ALFA, color=TURQUOISE, align="c")
-s.text(u"PERSONA PRINCIPAL", 178, 338, 300, size=8.5, font=POP, bold=True,
-       color=TURQUOISE, spacing=1.6)
-s.text(u"Aminata, 36 ans", 178, 352, 300, size=19, font=ALFA, color=BLANC)
-s.text(u"Directrice d'une PME de transformation de fruits et légumes à Dakar.",
-       178, 386, 440, size=10.5, font=POP, color=GRISE, leading=1.45)
-per = [(u"Besoin", u"Faire connaître ses gammes\nde jus locaux"),
-       (u"Frein", u"Manque de temps et\nd'expertise interne"),
-       (u"Réseaux", u"LinkedIn · Facebook\n· TikTok")]
-for i, (k, v) in enumerate(per):
-    bx = 178 + i * 240
-    by = 414
-    s.rect(bx, by, 226, 42, fill=BLANC, alpha=0.10, radius=6)
-    s.text(k.upper(), bx + 12, by + 8, 200, size=8, font=POP, bold=True,
-           color=TURQUOISE, spacing=1.2)
-    s.text(v.replace("\n", " "), bx + 12, by + 23, 212, size=9.6, font=POP, color=BLANC)
+# --- Persona principal, seul sujet de la page
+s.rect(52, 170, 856, 250, fill=VERT_FONCE, radius=12)
+s.ellipse(96, 206, 128, 128, fill=TURQUOISE, alpha=0.22)
+s.text(u"A", 96, 244, 128, size=52, font=ALFA, color=TURQUOISE, align="c")
+
+s.text(u"PERSONA PRINCIPAL", 262, 202, 400, size=10, font=POP, bold=True,
+       color=TURQUOISE, spacing=1.8)
+s.text(u"Aminata, 36 ans", 262, 224, 560, size=32, font=ALFA, color=BLANC)
+s.rect(262, 274, 64, 3.5, fill=TURQUOISE)
+s.text(u"Directrice générale d'une PME de transformation de fruits "
+       u"et légumes à Dakar.",
+       262, 292, 600, size=14, font=POP, color=BLANC, leading=1.45)
+
+per = [(u"Besoin", u"Faire connaître ses gammes de jus locaux", TURQUOISE),
+       (u"Frein", u"Manque de temps et d'expertise interne", TURQUOISE),
+       (u"Réseaux", u"LinkedIn · Facebook · TikTok", TURQUOISE)]
+for i, (k, v, c) in enumerate(per):
+    bx = 96 + i * 276
+    s.rect(bx, 344, 256, 56, fill=BLANC, alpha=0.10, radius=8)
+    s.rect(bx, 344, 3.5, 56, fill=c, radius=1.75)
+    s.text(k.upper(), bx + 18, 356, 220, size=8.6, font=POP, bold=True,
+           color=TURQUOISE, spacing=1.4)
+    s.text(v, bx + 18, 372, 226, size=11, font=POP, color=BLANC, leading=1.3)
+
 s.text(u"« De bons produits locaux, mais ni le temps ni les compétences "
        u"pour les rendre visibles. »",
-       52, 478, 856, size=11, font=POP, italic=True, color=OLIVE, align="c")
+       52, 446, 856, size=14, font=ALFA, color=VERT_FONCE, align="c")
 
 # ============================================================== 08 OBJECTIVES
 s = new("O — Objectives")
@@ -1070,7 +1062,7 @@ s.text(u"Sadiya Digital Agri accompagne les entreprises agroalimentaires sénég
        u"pour mieux communiquer, valoriser leurs produits et développer leur visibilité "
        u"grâce au digital.",
        190, 440, 580, size=9, font=POP, color=OLIVE, align="c", leading=1.55)
-footer(s, page=24)
+footer(s, page=24, logos=True, mention=True)
 
 
 # ------------------------------------------------------------------- BUILD
