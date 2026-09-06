@@ -176,12 +176,17 @@ note(u"Marquer une vraie pause de deux secondes après la question. "
 
 # ============================================================ 2 PROBLEME
 section(u"2", u"Contexte & problématique", u"Slide 2", u"0:35 → 1:10")
-dire(u"Aujourd'hui, les entreprises agroalimentaires sénégalaises font face à "
-     u"trois freins. D'abord, une présence très faible sur les réseaux sociaux : "
-     u"des pages inactives, des publications rares. Ensuite, un manque de "
-     u"stratégie : on publie sans objectif et sans calendrier. Et enfin, "
-     u"une visibilité qui ne convertit pas : quelques vues, parfois des likes, "
-     u"mais aucun client au bout.")
+dire(u"Regardons le contexte. Fin 2025, le Sénégal compte onze millions cinq "
+     u"cent mille internautes, soit plus de soixante pour cent de la population, "
+     u"et cinq millions quatre cent mille identités actives sur les réseaux "
+     u"sociaux. Nos concitoyens y passent en moyenne deux heures vingt-quatre "
+     u"par jour. Et soixante-trois pour cent des PMI industrielles du pays "
+     u"évoluent dans l'agroalimentaire.")
+dire(u"Le marché est donc là. Pourtant les entreprises agroalimentaires font "
+     u"face à trois freins : une présence très faible sur les réseaux, "
+     u"un manque de stratégie — on publie sans objectif ni calendrier — et une "
+     u"visibilité qui ne convertit pas : des vues, parfois des likes, mais "
+     u"aucun client au bout.")
 dire(u"Résultat : des produits de qualité restent inconnus, pendant que les "
      u"marques importées occupent tout l'espace digital.")
 note(u"Appuyer sur « aucun client au bout » — c'est le point qui parle "
@@ -212,40 +217,38 @@ dire(u"Ma cible, c'est Aminata : trente-six ans, directrice d'une PME de "
      u"mais ni le temps ni les compétences pour les rendre visibles.")
 dire(u"Mes objectifs sont chiffrés : cinq cents abonnés qualifiés en trois mois, "
      u"trente demandes de renseignements et cinq contrats signés en six mois.")
-dire(u"Ma stratégie repose sur trois réseaux aux rôles complémentaires : TikTok "
-     u"attire l'attention, Facebook fédère la communauté, LinkedIn crédibilise "
-     u"et permet de prospecter. Concrètement, je publie trois jours par semaine, "
-     u"selon un calendrier éditorial construit sur cinq piliers de contenu. "
-     u"Et chaque mois, je mesure : portée, demandes reçues, contrats signés — "
-     u"puis j'ajuste.")
+dire(u"Ma stratégie repose sur trois réseaux complémentaires : TikTok attire, "
+     u"Facebook fédère, LinkedIn crédibilise et permet de prospecter. Je publie "
+     u"trois jours par semaine, et chaque mois je mesure la portée, les demandes "
+     u"et les contrats signés — puis j'ajuste.")
 note(u"Section dense : ne pas accélérer. Si le temps manque, supprimer la phrase "
      u"sur les cinq piliers, pas les chiffres.")
 
 # ============================================================ 5 MODELE ECO
 section(u"5", u"Modèle économique & benchmark", u"Slides 14 à 17", u"2:50 → 3:30")
-dire(u"Mon modèle économique repose sur l'abonnement mensuel, avec trois "
-     u"formules : Essentiel à soixante-quinze mille francs, Pro à cent cinquante "
-     u"mille, et Premium à deux cent cinquante mille francs par mois. S'y ajoutent "
-     u"des prestations ponctuelles à partir de vingt-cinq mille francs.")
+dire(u"Mon modèle repose sur l'abonnement mensuel : Essentiel à soixante-quinze "
+     u"mille francs, Pro à cent cinquante mille, Premium à deux cent cinquante "
+     u"mille, plus des prestations ponctuelles dès vingt-cinq mille.")
 dire(u"Mes charges mensuelles sont estimées à quatre-vingt-cinq mille francs. "
      u"Autrement dit, dès le troisième client en formule Pro, l'activité est "
      u"rentable. Mon objectif à six mois : quatre cent cinquante mille francs "
      u"de revenus mensuels.")
 dire(u"Face à la concurrence, ma différence tient en une phrase : je suis la "
      u"seule à combiner expertise agronomique et maîtrise digitale. Les agences "
-     u"établies ont la méthode mais pas la connaissance du secteur ; les "
-     u"freelances ont les tarifs mais pas la stratégie.")
+     u"établies facturent de cent trente mille à six cent mille francs par mois : "
+     u"elles ont la méthode, mais aucune ne parle vraiment agro. Les freelances, "
+     u"entre cinquante et cent cinquante mille, ont les tarifs mais pas la "
+     u"stratégie. Je me positionne entre les deux, avec la spécialisation en plus.")
 note(u"Annoncer le seuil de rentabilité avec assurance, puis enchaîner sur le "
      u"benchmark : c'est ce qu'un jury retient d'un business model.")
 
 # ============================================================ 6 TRACTION
 section(u"6", u"Réalisations & équipe", u"Slides 18 à 21", u"3:30 → 4:05")
-dire(u"Et je ne pars pas de zéro. L'entreprise est formalisée : j'ai le NINEA et "
-     u"le registre de commerce. J'ai construit toute l'identité de marque : le "
-     u"logo, la charte graphique, la bannière et la carte de visite. Ma présence "
-     u"digitale est en place : un site portfolio en ligne, une page professionnelle "
-     u"LinkedIn, une page Facebook, et Meta Business Suite configurée. Je travaille "
-     u"avec Canva, CapCut, et je pilote mes projets sur Trello.")
+dire(u"Et je ne pars pas de zéro. L'entreprise est formalisée : NINEA et registre "
+     u"de commerce. L'identité de marque est construite : logo, charte, bannière, "
+     u"carte de visite. Ma présence digitale est en place : site portfolio, "
+     u"LinkedIn, Facebook et Meta Business Suite. Je travaille avec Canva, CapCut "
+     u"et Trello.")
 dire(u"Mon ambition, maintenant, c'est de signer mes cinq premiers clients, de "
      u"construire un portefeuille récurrent, et de faire de Sadiya Digital Agri "
      u"la référence de la communication digitale agroalimentaire au Sénégal.")
@@ -258,11 +261,10 @@ note(u"Énumérer les réalisations d'un ton posé et factuel. C'est la preuve "
 
 # ============================================================ 7 CTA
 section(u"7", u"L'appel à l'action", u"Slide 22", u"4:05 → 4:30")
-dire(u"Pour franchir cette étape, je sollicite un financement d'un million huit "
-     u"cent cinquante mille francs CFA. Il servira à quatre choses : mes "
-     u"équipements de production photo et vidéo, mes abonnements et outils sur "
-     u"douze mois, trois formations — analytics, marketing B2B et acquisition "
-     u"client — et la création d'un site vitrine professionnel.")
+dire(u"Pour franchir cette étape, je sollicite un million huit cent cinquante "
+     u"mille francs CFA : mes équipements de production, mes abonnements et outils "
+     u"sur douze mois, trois formations — analytics, marketing B2B et acquisition "
+     u"client — et un site vitrine professionnel.")
 dire(u"Au-delà du financement, j'ai besoin d'un accompagnement en mentorat "
      u"business, de partenariats avec les réseaux agro-industriels, et de "
      u"visibilité pour décrocher mes premiers clients pilotes.")
@@ -283,9 +285,9 @@ para(u"Les 6 chiffres à ne pas oublier", size=12, bold=True, color=VERT,
 chiffres = [(u"1 850 000 FCFA", u"le financement demandé"),
             (u"85 000 FCFA", u"mes charges mensuelles"),
             (u"3 clients", u"mon seuil de rentabilité"),
-            (u"500 / 30 / 5", u"abonnés, demandes, contrats"),
+            (u"11,5 M / 2 h 24", u"internautes sénégalais, usage quotidien"),
             (u"75 / 150 / 250 k", u"mes trois formules mensuelles"),
-            (u"3 jours", u"de publication par semaine")]
+            (u"500 / 30 / 5", u"abonnés, demandes, contrats")]
 t = doc.add_table(rows=len(chiffres), cols=2)
 t.alignment = WD_TABLE_ALIGNMENT.CENTER
 for i, (a, b) in enumerate(chiffres):

@@ -135,37 +135,39 @@ titlebar(s, u"Point de départ", u"Contexte & Problématique",
          u"Un secteur qui produit beaucoup, mais qui se vend mal en ligne.", page=2)
 
 # --- Le contexte, en 3 reperes chiffres
-s.text(u"LE CONTEXTE", 52, 168, 400, size=10, font=POP, bold=True,
-       color=TURQUOISE, spacing=1.6)
-ctx = [(u"70 %", u"de la population sénégalaise\nvit de l'agriculture", TURQUOISE),
-       (u"+ 9 M", u"d'utilisateurs actifs\nsur les réseaux sociaux", VERT_FONCE),
-       (u"Consommer\nlocal", u"une dynamique nationale\nqui porte les produits du terroir", OLIVE)]
-for i, (big, lbl, c) in enumerate(ctx):
+s.text(u"LE CONTEXTE — UN MARCHÉ PORTEUR", 52, 168, 500, size=10, font=POP,
+       bold=True, color=TURQUOISE, spacing=1.6)
+ctx = [(u"11,5 M", u"utilisateurs internet", u"60,6 % de pénétration, fin 2025", TURQUOISE),
+       (u"5,42 M", u"identités sur les réseaux", u"28,5 % de la population, fin 2025", VERT_FONCE),
+       (u"63 %", u"des PMI industrielles", u"évoluent dans l'agroalimentaire", OLIVE)]
+for i, (big, lbl, sub, c) in enumerate(ctx):
     x = 52 + i * 288
-    card(s, x, 192, 268, 104)
-    s.rect(x, 192, 268, 4, fill=c, radius=2)
-    s.text(big.replace("\n", " "), x + 22, 210, 226, size=23, font=ALFA, color=c,
-           leading=1.1)
-    s.text(lbl, x + 22, 250, 230, size=11, font=POP, color=TRES_FONCE, leading=1.4)
+    card(s, x, 190, 268, 104)
+    s.rect(x, 190, 268, 4, fill=c, radius=2)
+    s.text(big, x + 22, 204, 226, size=26, font=ALFA, color=c)
+    s.text(lbl, x + 22, 242, 230, size=11.5, font=POP, bold=True, color=VERT_FONCE)
+    s.text(sub, x + 22, 262, 230, size=9.2, font=POP, color=OLIVE, leading=1.35)
+s.rect(52, 304, 856, 32, fill=TURQUOISE, alpha=0.13, radius=8)
+s.text(u"Les Sénégalais passent en moyenne 2 h 24 par jour sur les réseaux sociaux.",
+       52, 314, 856, size=11.5, font=POP, bold=True, color=VERT_FONCE, align="c")
 
-# --- La problematique, en 3 freins
-s.text(u"LA PROBLÉMATIQUE", 52, 318, 400, size=10, font=POP, bold=True,
+s.text(u"LA PROBLÉMATIQUE", 52, 344, 400, size=10, font=POP, bold=True,
        color=SAFRAN, spacing=1.6)
 pbs = [(u"01", u"Présence faible", u"Des pages inactives, peu de contenu."),
        (u"02", u"Pas de stratégie", u"On publie sans objectif ni calendrier."),
        (u"03", u"Aucune conversion", u"De la visibilité, mais pas de clients.")]
 for i, (n, t, d) in enumerate(pbs):
     x = 52 + i * 288
-    card(s, x, 342, 268, 96)
-    s.rect(x, 342, 4, 96, fill=SAFRAN, radius=2)
-    numbadge(s, x + 22, 360, n, d=24, fill=SAFRAN, tcol=TRES_FONCE, size=10)
-    s.text(t, x + 56, 364, 200, size=14, font=POP, bold=True, color=VERT_FONCE)
-    s.text(d, x + 22, 400, 230, size=10.5, font=POP, color=TRES_FONCE, leading=1.4)
+    card(s, x, 366, 268, 82)
+    s.rect(x, 366, 4, 82, fill=SAFRAN, radius=2)
+    numbadge(s, x + 22, 381, n, d=24, fill=SAFRAN, tcol=TRES_FONCE, size=10)
+    s.text(t, x + 56, 385, 200, size=13.5, font=POP, bold=True, color=VERT_FONCE)
+    s.text(d, x + 22, 417, 230, size=10.2, font=POP, color=TRES_FONCE, leading=1.4)
 
-s.rect(52, 452, 856, 40, fill=VERT_FONCE, radius=9)
-s.text(u"Des produits de qualité restent invisibles, pendant que les marques "
-       u"importées occupent le terrain digital.",
-       52, 464, 856, size=12.5, font=POP, bold=True, color=BLANC, align="c")
+s.rect(52, 460, 856, 32, fill=VERT_FONCE, radius=8)
+s.text(u"Des produits de qualité restent invisibles pendant que les marques "
+       u"importées occupent le terrain.",
+       52, 470, 856, size=11.5, font=POP, bold=True, color=BLANC, align="c")
 
 # ============================================================== 03 ACCROCHE (interrogation)
 s = new("Accroche")
@@ -687,9 +689,9 @@ titlebar(s, u"Benchmarking", u"Ce Que J'ai de Plus Qu'Eux",
          u"Comparaison sur les cinq critères qui comptent pour une PME agroalimentaire.",
          page=17)
 
-cols = [(u"Sadiya\nDigital Agri", TURQUOISE, True),
-        (u"Agences\nétablies", GRISE, False),
-        (u"CM\nfreelance", GRISE, False)]
+cols = [(u"Sadiya Digital Agri", u"75 000 – 250 000 FCFA/mois", TURQUOISE, True),
+        (u"Agences établies", u"130 000 – 600 000 FCFA/mois", GRISE, False),
+        (u"CM freelance", u"50 000 – 150 000 FCFA/mois", GRISE, False)]
 crit = [(u"Expertise agricole", 2, 0, 0),
         (u"Spécialisation agro", 2, 0, 0),
         (u"Tarifs adaptés aux PME", 2, 0, 1),
@@ -701,12 +703,14 @@ CW, CG = 172, 16
 CX = LX + LW + 12
 
 # --- En-tetes de colonnes
-for i, (nom, c, hl) in enumerate(cols):
+for i, (nom, prix, c, hl) in enumerate(cols):
     x = CX + i * (CW + CG)
-    s.rect(x, 164, CW, 52, fill=VERT_FONCE if hl else BLANC,
+    s.rect(x, 160, CW, 56, fill=VERT_FONCE if hl else BLANC,
            line=None if hl else GRISE_CLAIR, radius=8)
-    s.text(nom.replace("\n", " "), x + 12, 176, CW - 24, size=11.5, font=POP,
-           bold=True, color=BLANC if hl else OLIVE, align="c", leading=1.25)
+    s.text(nom, x + 8, 172, CW - 16, size=11.5, font=POP,
+           bold=True, color=BLANC if hl else OLIVE, align="c", leading=1.2)
+    s.text(prix, x + 8, 192, CW - 16, size=7.6, font=POP,
+           color=TURQUOISE if hl else OLIVE, align="c")
 
 # --- Lignes de criteres
 for j, (lbl, a, b, cc) in enumerate(crit):
@@ -988,22 +992,23 @@ titlebar(s, u"Sources", u"Bibliographie",
          page=23)
 
 # ---- Colonne 1 : donnees & rapports
-card(s, 52, 164, 420, 158)
+card(s, 52, 164, 420, 166)
 s.rect(52, 164, 420, 4, fill=TURQUOISE, radius=2)
 s.text(u"DONNÉES & RAPPORTS SECTORIELS", 74, 182, 340, size=9.5, font=POP,
        bold=True, color=TURQUOISE, spacing=1.3)
-refs1 = [(u"ANSD", u"Agence Nationale de la Statistique et de la Démographie — "
-          u"données agricoles du Sénégal."),
-         (u"DataReportal", u"Digital 2025 Senegal — usages des réseaux sociaux."),
-         (u"FAO", u"Profils des filières agroalimentaires ouest-africaines.")]
+refs1 = [(u"DataReportal / Kepios", u"Digital 2025 Senegal (fin 2025) — 11,5 M "
+          u"d'utilisateurs internet, 5,42 M d'identités sociales, 2 h 24 d'usage/jour."),
+         (u"Ministère du Développement industriel", u"Données 2022 — 63 % des PMI "
+          u"industrielles évoluent dans l'agroalimentaire."),
+         (u"ANSD", u"Agence Nationale de la Statistique et de la Démographie.")]
 for i, (src, desc) in enumerate(refs1):
-    y = 208 + i * 38
+    y = 208 + i * 44
     s.rect(74, y + 6, 6, 6, fill=TURQUOISE, radius=3)
-    s.text(src, 92, y, 120, size=11, font=POP, bold=True, color=VERT_FONCE)
-    s.text(desc, 92, y + 16, 356, size=8.8, font=POP, color=OLIVE, leading=1.35)
+    s.text(src, 92, y, 340, size=10.5, font=POP, bold=True, color=VERT_FONCE)
+    s.text(desc, 92, y + 17, 356, size=8.4, font=POP, color=OLIVE, leading=1.35)
 
 # ---- Colonne 2 : methode
-card(s, 488, 164, 420, 158)
+card(s, 488, 164, 420, 166)
 s.rect(488, 164, 420, 4, fill=VERT_FONCE, radius=2)
 s.text(u"MÉTHODE & CADRE STRATÉGIQUE", 510, 182, 340, size=9.5, font=POP,
        bold=True, color=VERT_FONCE, spacing=1.3)
@@ -1012,34 +1017,34 @@ refs2 = [(u"TOMSTER", u"Cadre de stratégie digitale — Target, Objectives, Mes
          (u"SMART", u"Méthode de formulation des objectifs mesurables."),
          (u"SWOT", u"Analyse des forces, faiblesses, opportunités et menaces.")]
 for i, (src, desc) in enumerate(refs2):
-    y = 208 + i * 38
+    y = 208 + i * 44
     s.rect(510, y + 6, 6, 6, fill=VERT_FONCE, radius=3)
     s.text(src, 528, y, 120, size=11, font=POP, bold=True, color=VERT_FONCE)
     s.text(desc, 528, y + 16, 356, size=8.8, font=POP, color=OLIVE, leading=1.35)
 
 # ---- Colonne 3 : benchmark
-card(s, 52, 338, 420, 136)
-s.rect(52, 338, 420, 4, fill=OLIVE, radius=2)
-s.text(u"BENCHMARK CONCURRENTIEL", 74, 356, 340, size=9.5, font=POP,
+card(s, 52, 346, 420, 130)
+s.rect(52, 346, 420, 4, fill=OLIVE, radius=2)
+s.text(u"BENCHMARK CONCURRENTIEL", 74, 362, 340, size=9.5, font=POP,
        bold=True, color=OLIVE, spacing=1.3)
-refs3 = [(u"Agence Kolonell", u"Offres et positionnement — site officiel."),
-         (u"Agence WEDRAOGO", u"Grille tarifaire et prestations — site officiel."),
-         (u"Freelances CM", u"Relevé de tarifs pratiqués au Sénégal, 2025.")]
+refs3 = [(u"Agence Kolonell", u"250 000 – 600 000 FCFA/mois — site officiel."),
+         (u"Agence WEDRAOGO", u"Dès 130 000 FCFA/mois — site officiel."),
+         (u"CM freelance", u"50 000 – 150 000 FCFA/mois — relevé 2025.")]
 for i, (src, desc) in enumerate(refs3):
-    y = 382 + i * 32
+    y = 388 + i * 30
     s.rect(74, y + 6, 6, 6, fill=OLIVE, radius=3)
     s.text(src, 92, y, 150, size=10.5, font=POP, bold=True, color=VERT_FONCE)
-    s.text(desc, 244, y + 1, 208, size=8.8, font=POP, color=OLIVE)
+    s.text(desc, 240, y + 1, 214, size=8.4, font=POP, color=OLIVE)
 
 # ---- Colonne 4 : outils & ressources
-s.rect(488, 338, 420, 136, fill=VERT_FONCE, radius=9)
-s.text(u"OUTILS & RESSOURCES", 510, 356, 340, size=9.5, font=POP,
+s.rect(488, 346, 420, 130, fill=VERT_FONCE, radius=9)
+s.text(u"OUTILS & RESSOURCES", 510, 362, 340, size=9.5, font=POP,
        bold=True, color=TURQUOISE, spacing=1.3)
 tools = [u"Canva · CapCut", u"Meta Business Suite", u"TikTok Studio",
          u"LinkedIn Analytics", u"Google Drive · Sheets", u"Trello"]
 for i, t in enumerate(tools):
     x = 510 + (i % 2) * 196
-    y = 384 + (i // 2) * 28
+    y = 390 + (i // 2) * 27
     s.rect(x, y + 5, 6, 6, fill=TURQUOISE, radius=3)
     s.text(t, x + 18, y, 180, size=10, font=POP, color=BLANC)
 
