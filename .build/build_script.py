@@ -226,7 +226,7 @@ note(u"Section dense : ne pas accélérer. Si le temps manque, supprimer la phra
      u"sur les cinq piliers, pas les chiffres.")
 
 # ============================================================ 5 MODELE ECO
-section(u"5", u"Modèle économique & benchmark", u"Slides 14 à 17", u"2:50 → 3:30")
+section(u"5", u"Modèle économique & benchmark", u"Slides 14 à 16", u"2:50 → 3:30")
 dire(u"Mon modèle repose sur l'abonnement mensuel : Essentiel à soixante-quinze "
      u"mille francs, Pro à cent cinquante mille, Premium à deux cent cinquante "
      u"mille, plus des prestations ponctuelles dès vingt-cinq mille.")
@@ -244,7 +244,7 @@ note(u"Annoncer le seuil de rentabilité avec assurance, puis enchaîner sur le 
      u"benchmark : c'est ce qu'un jury retient d'un business model.")
 
 # ============================================================ 6 TRACTION
-section(u"6", u"Réalisations & équipe", u"Slides 18 à 21", u"3:30 → 4:05")
+section(u"6", u"Réalisations & équipe", u"Slides 17 à 20", u"3:30 → 4:05")
 dire(u"Et je ne pars pas de zéro. L'entreprise est formalisée : NINEA et registre "
      u"de commerce. L'identité de marque est construite : logo, charte, bannière, "
      u"carte de visite. Ma présence digitale est en place : site portfolio, "
@@ -261,7 +261,7 @@ note(u"Énumérer les réalisations d'un ton posé et factuel. C'est la preuve "
      u"que vous exécutez déjà.")
 
 # ============================================================ 7 CTA
-section(u"7", u"L'appel à l'action", u"Slide 22", u"4:05 → 4:30")
+section(u"7", u"L'appel à l'action", u"Slide 21", u"4:05 → 4:30")
 dire(u"Pour franchir cette étape, je sollicite un million huit cent cinquante "
      u"mille francs CFA : mes équipements de production, mes abonnements et outils "
      u"sur douze mois, trois formations — analytics, marketing B2B et acquisition "
