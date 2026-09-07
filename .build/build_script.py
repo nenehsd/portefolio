@@ -18,6 +18,8 @@ OLIVE = RGBColor(0x42, 0x61, 0x2D)
 NOIR = RGBColor(0x0A, 0x1A, 0x01)
 GRIS = RGBColor(0x6B, 0x7A, 0x6C)
 
+_hdr = {}
+
 doc = Document()
 
 # --- Mise en page
@@ -74,8 +76,19 @@ def rule(color="1AAB70", size=6):
     p._p.get_or_add_pPr().append(pbdr)
 
 
-def section(num, titre, slides, duree):
-    """Bandeau de section : numero, titre, slides visees, minutage."""
+CPS = 17.9   # caracteres/seconde, calibre sur l'audio genere
+GAP = 0.1    # respiration moyenne entre paragraphes (s)
+
+_clock = [0.0]
+_pending = []
+
+
+def _mmss(t):
+    return u"%d:%02d" % (int(t // 60), int(round(t)) % 60)
+
+
+def section(num, titre, slides, duree=None):
+    """Bandeau de section : numero, titre, slides visees, minutage calcule."""
     t = doc.add_table(rows=1, cols=2)
     t.alignment = WD_TABLE_ALIGNMENT.CENTER
     t.autofit = False
@@ -92,14 +105,19 @@ def section(num, titre, slides, duree):
     r.font.color.rgb = RGBColor(0xFF, 0xFF, 0xFF)
     p1 = c1.paragraphs[0]
     p1.alignment = WD_ALIGN_PARAGRAPH.RIGHT
-    r1 = p1.add_run(u"%s  |  %s" % (slides, duree))
+    r1 = p1.add_run(u"%s  |  " % slides)
     r1.font.name = "Poppins"; r1.font.size = Pt(8.5); r1.bold = True
     r1.font.color.rgb = RGBColor(0x1A, 0xAB, 0x70)
+    r2 = p1.add_run(u"@@TIME@@")          # remplace en fin de generation
+    r2.font.name = "Poppins"; r2.font.size = Pt(8.5); r2.bold = True
+    r2.font.color.rgb = RGBColor(0x1A, 0xAB, 0x70)
+    _pending.append((r2, _clock[0]))
     doc.add_paragraph().paragraph_format.space_after = Pt(2)
 
 
 def dire(text):
-    """Le texte a prononcer."""
+    """Le texte a prononcer. Avance l'horloge du pitch."""
+    _clock[0] += len(text) / CPS + GAP
     p = para(text, size=11, leading=1.4, space_after=8, align="j")
     return p
 
@@ -140,8 +158,8 @@ rule()
 # --- Bandeau infos
 t = doc.add_table(rows=1, cols=3)
 t.alignment = WD_TABLE_ALIGNMENT.CENTER
-infos = [(u"DURÉE", u"4 min 30"), (u"MOTS", u"± 700"),
-         (u"DÉBIT", u"~155 mots / min")]
+infos = [(u"DURÉE", u"@@TOTAL@@"), (u"MOTS", u"@@WORDS@@"),
+         (u"SLIDES", u"22")]
 for i, (k, v) in enumerate(infos):
     c = t.rows[0].cells[i]
     c.width = Cm(5.5)
@@ -157,6 +175,8 @@ for i, (k, v) in enumerate(infos):
     p2.paragraph_format.space_after = Pt(4)
     r2 = p2.add_run(v); r2.font.name = "Poppins"; r2.font.size = Pt(11)
     r2.bold = True; r2.font.color.rgb = VERT
+    if v.startswith("@@"):
+        _hdr[v] = r2
 doc.add_paragraph().paragraph_format.space_after = Pt(4)
 
 note(u"Mode d'emploi — le texte en grand est à dire ; les encadrés en vert olive "
@@ -164,36 +184,40 @@ note(u"Mode d'emploi — le texte en grand est à dire ; les encadrés en vert o
      u"Les minutages sont cumulés depuis le début.")
 
 # ============================================================ 1 ACCROCHE
-section(u"1", u"Accroche", u"Slides 1 à 3", u"0:00 → 0:35")
+section(u"1", u"Accroche", u"Slide 1 — Couverture")
 dire(u"Bonjour à toutes et à tous. Je m'appelle Nene Halimatou Sahdiya Diallo, "
      u"et je suis la fondatrice de Sadiya Digital Agri.")
-dire(u"Je voudrais commencer par une question toute simple. Au Sénégal, nous "
-     u"produisons d'excellents produits locaux : du jus de baobab, du fonio, "
-     u"de la pâte d'arachide, de la sauce bissap. Mais si ces produits ne sont "
-     u"pas visibles en ligne… comment donner envie de les consommer ?")
-note(u"Marquer une vraie pause de deux secondes après la question. "
-     u"Regarder le jury, ne pas enchaîner tout de suite.")
+note(u"Se présenter posément, regarder l'ensemble du jury avant de commencer.")
 
-# ============================================================ 2 PROBLEME
-section(u"2", u"Contexte & problématique", u"Slide 2", u"0:35 → 1:10")
-dire(u"Regardons le contexte. Fin 2025, le Sénégal compte onze millions cinq "
-     u"cent mille internautes, soit plus de soixante pour cent de la population, "
-     u"et cinq millions quatre cent mille identités actives sur les réseaux "
-     u"sociaux. Nos concitoyens y passent en moyenne deux heures vingt-quatre "
-     u"par jour. Et soixante-trois pour cent des PMI industrielles du pays "
-     u"évoluent dans l'agroalimentaire.")
+# ============================================================ 2 CONTEXTE
+section(u"2", u"Contexte & problématique", u"Slide 2")
+dire(u"Regardons d'abord le contexte. Fin 2025, le Sénégal compte onze millions "
+     u"cinq cent mille internautes, soit plus de soixante pour cent de la "
+     u"population, et cinq millions quatre cent mille identités actives sur les "
+     u"réseaux sociaux. Nos concitoyens y passent en moyenne deux heures "
+     u"vingt-quatre par jour. Et soixante-trois pour cent des PMI industrielles "
+     u"du pays évoluent dans l'agroalimentaire.")
 dire(u"Le marché est donc là. Pourtant les entreprises agroalimentaires font "
      u"face à trois freins : une présence très faible sur les réseaux, "
      u"un manque de stratégie — on publie sans objectif ni calendrier — et une "
      u"visibilité qui ne convertit pas : des vues, parfois des likes, mais "
      u"aucun client au bout.")
-dire(u"Résultat : des produits de qualité restent inconnus, pendant que les "
-     u"marques importées occupent tout l'espace digital.")
 note(u"Appuyer sur « aucun client au bout » — c'est le point qui parle "
      u"le plus à un jury d'entrepreneurs.")
 
-# ============================================================ 3 SOLUTION
-section(u"3", u"La solution & le marché", u"Slides 4 et 5", u"1:10 → 1:55")
+# ============================================================ 3 LA QUESTION
+section(u"3", u"La question", u"Slide 3 — Du local au digital")
+dire(u"Au Sénégal, nous produisons d'excellents produits locaux : du jus de "
+     u"baobab, du fonio, de la pâte d'arachide, de la sauce bissap. Mais si ces "
+     u"produits ne sont pas visibles en ligne, comment donner envie de les "
+     u"consommer ?")
+dire(u"Des produits de qualité restent inconnus, pendant que les marques "
+     u"importées occupent tout l'espace digital.")
+note(u"Marquer une vraie pause de deux secondes après la question. "
+     u"C'est le moment le plus important de l'introduction : ne pas enchaîner.")
+
+# ============================================================ 4 SOLUTION
+section(u"4", u"La solution & le marché", u"Slides 4 et 5")
 dire(u"Ma réponse, c'est Sadiya Digital Agri : une agence de community management "
      u"spécialisée dans le secteur agro-industriel. Nous proposons trois choses : "
      u"la stratégie social media, la création de contenu, et la gestion de "
@@ -208,8 +232,8 @@ dire(u"Mon marché est cent pour cent B2B : producteurs, transformateurs, "
 note(u"C'est le cœur de votre crédibilité. Ralentir sur « agriculture et digital » "
      u"et laisser la phrase respirer.")
 
-# ============================================================ 4 STRATEGIE
-section(u"4", u"La stratégie TOMSTER", u"Slides 6 à 13", u"1:55 → 2:50")
+# ============================================================ 5 TOMSTER
+section(u"5", u"La stratégie TOMSTER", u"Slides 6 à 13")
 dire(u"Pour y arriver, j'applique la méthode TOMSTER. Je vais vous en donner "
      u"l'essentiel.")
 dire(u"Ma cible, c'est Aminata : trente-six ans, directrice générale d'une PME "
@@ -222,11 +246,11 @@ dire(u"Ma stratégie repose sur trois réseaux complémentaires : TikTok attire,
      u"Facebook fédère, LinkedIn crédibilise et permet de prospecter. Je publie "
      u"trois jours par semaine, et chaque mois je mesure la portée, les demandes "
      u"et les contrats signés — puis j'ajuste.")
-note(u"Section dense : ne pas accélérer. Si le temps manque, supprimer la phrase "
-     u"sur les cinq piliers, pas les chiffres.")
+note(u"Section dense : huit slides défilent vite. Ne pas accélérer le débit, "
+     u"c'est le visuel qui porte le détail.")
 
-# ============================================================ 5 MODELE ECO
-section(u"5", u"Modèle économique & benchmark", u"Slides 14 à 16", u"2:50 → 3:30")
+# ============================================================ 6 MODELE ECO
+section(u"6", u"Modèle économique & benchmark", u"Slides 14 à 16")
 dire(u"Mon modèle repose sur l'abonnement mensuel : Essentiel à soixante-quinze "
      u"mille francs, Pro à cent cinquante mille, Premium à deux cent cinquante "
      u"mille, plus des prestations ponctuelles dès vingt-cinq mille.")
@@ -243,8 +267,8 @@ dire(u"Face à la concurrence, ma différence tient en une phrase : je suis la "
 note(u"Annoncer le seuil de rentabilité avec assurance, puis enchaîner sur le "
      u"benchmark : c'est ce qu'un jury retient d'un business model.")
 
-# ============================================================ 6 TRACTION
-section(u"6", u"Réalisations & équipe", u"Slides 17 à 20", u"3:30 → 4:05")
+# ============================================================ 7 TRACTION
+section(u"7", u"Réalisations & équipe", u"Slides 17 à 20")
 dire(u"Et je ne pars pas de zéro. L'entreprise est formalisée : NINEA et registre "
      u"de commerce. L'identité de marque est construite : logo, charte, bannière, "
      u"carte de visite. Ma présence digitale est en place : site portfolio, "
@@ -260,8 +284,8 @@ dire(u"Aujourd'hui je porte l'activité seule. Dès le troisième client réguli
 note(u"Énumérer les réalisations d'un ton posé et factuel. C'est la preuve "
      u"que vous exécutez déjà.")
 
-# ============================================================ 7 CTA
-section(u"7", u"L'appel à l'action", u"Slide 21", u"4:05 → 4:30")
+# ============================================================ 8 CTA
+section(u"8", u"L'appel à l'action", u"Slide 21")
 dire(u"Pour franchir cette étape, je sollicite un million huit cent cinquante "
      u"mille francs CFA : mes équipements de production, mes abonnements et outils "
      u"sur douze mois, trois formations — analytics, marketing B2B et acquisition "
@@ -272,7 +296,7 @@ dire(u"Au-delà du financement, j'ai besoin d'un accompagnement en mentorat "
 dire(u"Avec votre soutien, mon activité peut créer plus d'impact et "
      u"d'opportunités. Je vous remercie pour votre attention.")
 note(u"Dernière phrase : ralentir nettement, regarder le jury, sourire. "
-     u"Ne pas enchaîner sur autre chose — laisser le silence.")
+     u"Slide 22 « Merci » affichée pendant les questions.")
 
 # ============================================================ ANNEXE
 doc.add_page_break()
@@ -344,6 +368,21 @@ for tip in [u"Respirer après chaque chiffre — c'est ce qui leur laisse le tem
     p.paragraph_format.space_after = Pt(4)
     r = p.add_run(tip); r.font.name = "Poppins"; r.font.size = Pt(10)
     r.font.color.rgb = NOIR
+
+# --- en-tete : duree totale et nombre de mots reels
+import re as _re
+_words = sum(len(_re.findall(r"\w+", pp.text)) for pp in doc.paragraphs
+             if pp.style.name == "Normal" and pp.runs
+             and pp.runs[0].font.size == Pt(11))
+if "@@TOTAL@@" in _hdr:
+    _hdr["@@TOTAL@@"].text = _mmss(_clock[0]).replace(":", " min ") + " s"
+if "@@WORDS@@" in _hdr:
+    _hdr["@@WORDS@@"].text = u"± %d" % (round(_words / 5.0) * 5)
+
+# --- minutages : chaque bandeau affiche debut -> fin de sa section
+for k, (run, start) in enumerate(_pending):
+    end = _pending[k + 1][1] if k + 1 < len(_pending) else _clock[0]
+    run.text = u"%s → %s" % (_mmss(start), _mmss(end))
 
 out = os.path.join(ROOT, "Pitch_Oral_Sadiya_Digital_Agri.docx")
 doc.save(out)
