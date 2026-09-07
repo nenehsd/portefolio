@@ -294,8 +294,7 @@ titlebar(s, u"T · Target", u"À qui nous adressons-nous ?",
          page=7)
 # --- Persona principal, seul sujet de la page
 s.rect(52, 170, 856, 250, fill=VERT_FONCE, radius=12)
-s.ellipse(96, 206, 128, 128, fill=TURQUOISE, alpha=0.22)
-s.text(u"A", 96, 244, 128, size=52, font=ALFA, color=TURQUOISE, align="c")
+s.image(IM("persona_aminata.jpg"), 94, 204, 132, 132)
 
 s.text(u"PERSONA PRINCIPAL", 262, 202, 400, size=10, font=POP, bold=True,
        color=TURQUOISE, spacing=1.8)
