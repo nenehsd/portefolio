@@ -246,19 +246,62 @@ s.text(u"Digitaliser la visibilité\net la commercialisation", 320, 174, 320,
        size=18.5, font=ALFA, color=BLANC, align="c", leading=1.25)
 s.text(u"des acteurs agroalimentaires sénégalais", 320, 246, 320, size=9,
        font=POP, color=GRISE, align="c")
+
+
+def ic_producteur(s, x, y, c):
+    """Pousse / plant : tige et deux feuilles."""
+    s.line(x + 14, y + 26, x + 14, y + 12, color=c, lw=1.8)
+    s.ellipse(x + 3, y + 11, 12, 9, fill=c)
+    s.ellipse(x + 13, y + 6, 12, 9, fill=c)
+    s.rect(x + 4, y + 25, 20, 3, fill=c, radius=1.5)
+
+
+def ic_transformateur(s, x, y, c):
+    """Usine : cheminee et batiment."""
+    s.rect(x + 3, y + 14, 22, 14, fill=c, radius=1.5)
+    s.rect(x + 6, y + 6, 5, 8, fill=c, radius=1)
+    s.poly([(x + 13, y + 20), (x + 19, y + 14), (x + 19, y + 20)], fill="FFFFFF")
+    s.poly([(x + 19, y + 20), (x + 25, y + 14), (x + 25, y + 20)], fill="FFFFFF")
+
+
+def ic_gie(s, x, y, c):
+    """Trois personnes : collectif."""
+    for dx, r in ((3, 4.5), (11.5, 5.5), (20, 4.5)):
+        s.ellipse(x + dx, y + 7, r * 2, r * 2, fill=c)
+    s.rect(x + 1, y + 19, 26, 9, fill=c, radius=4.5)
+
+
+def ic_distributeur(s, x, y, c):
+    """Camion de livraison."""
+    s.rect(x + 2, y + 11, 14, 11, fill=c, radius=1.5)
+    s.poly([(x + 16, y + 15), (x + 22, y + 15), (x + 26, y + 19),
+            (x + 26, y + 22), (x + 16, y + 22)], fill=c)
+    s.ellipse(x + 5, y + 21, 7, 7, fill=c)
+    s.ellipse(x + 17, y + 21, 7, 7, fill=c)
+
+
+def ic_acheteur(s, x, y, c):
+    """Panier / sac d'achat."""
+    s.poly([(x + 5, y + 12), (x + 23, y + 12), (x + 21, y + 27), (x + 7, y + 27)],
+           fill=c)
+    s.ellipse(x + 9, y + 4, 10, 11, line=c, lw=1.8)
+    s.rect(x + 9, y + 10, 10, 5, fill=BLANC)
+
+
 segs = [
-    (u"01", u"PRODUCTEURS", u"Exploitations agricoles\n& entreprises de production", 52, 156, 232),
-    (u"05", u"ACHETEURS PRO", u"Hôtels, restaurants,\ncommerces & enseignes", 676, 156, 232),
-    (u"02", u"TRANSFORMATEURS", u"PME et entreprises\nde transformation", 62, 332, 226),
-    (u"03", u"GIE & COOPÉRATIVES", u"Structures collectives\nà professionnaliser", 366, 356, 228),
-    (u"04", u"DISTRIBUTEURS", u"Grossistes, distributeurs\n& acteurs de la chaîne", 672, 332, 232),
+    (u"01", u"PRODUCTEURS", ic_producteur, 52, 168, 232),
+    (u"05", u"ACHETEURS PRO", ic_acheteur, 676, 168, 232),
+    (u"02", u"TRANSFORMATEURS", ic_transformateur, 62, 340, 226),
+    (u"03", u"GIE & COOPÉRATIVES", ic_gie, 366, 362, 228),
+    (u"04", u"DISTRIBUTEURS", ic_distributeur, 672, 340, 232),
 ]
-for n, t, d, x, y, w in segs:
-    card(s, x, y, w, 96, fill=BLANC, line=TURQUOISE, radius=10, lw=0.9)
-    numbadge(s, x + 16, y + 14, n, d=20, size=8.5)
-    s.text(t, x + 43, y + 17, w - 55, size=12.5, font=POP, bold=True, color=VERT_FONCE)
-    s.text(d, x + 16, y + 50, w - 32, size=10, font=POP, color=TRES_FONCE, leading=1.45)
-for (x, y) in [(284, 200), (676, 200), (288, 356), (480, 356), (672, 356)]:
+for n, t, icon, x, y, w in segs:
+    card(s, x, y, w, 72, fill=BLANC, line=TURQUOISE, radius=10, lw=0.9)
+    s.ellipse(x + 16, y + 20, 34, 34, fill=TURQUOISE, alpha=0.14)
+    icon(s, x + 19, y + 23, VERT_FONCE)
+    s.text(t, x + 60, y + 28, w - 74, size=12.5, font=POP, bold=True,
+           color=VERT_FONCE)
+for (x, y) in [(284, 204), (676, 204), (288, 364), (480, 372), (672, 364)]:
     s.line(480, 258, x, y, color=TURQUOISE, lw=0.6, dash=[2, 3], alpha=0.75)
 s.rect(0, 522, W, 18, fill=VERT_FONCE)
 
