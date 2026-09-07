@@ -247,61 +247,19 @@ s.text(u"Digitaliser la visibilité\net la commercialisation", 320, 174, 320,
 s.text(u"des acteurs agroalimentaires sénégalais", 320, 246, 320, size=9,
        font=POP, color=GRISE, align="c")
 
-
-def ic_producteur(s, x, y, c):
-    """Pousse / plant : tige et deux feuilles."""
-    s.line(x + 14, y + 26, x + 14, y + 12, color=c, lw=1.8)
-    s.ellipse(x + 3, y + 11, 12, 9, fill=c)
-    s.ellipse(x + 13, y + 6, 12, 9, fill=c)
-    s.rect(x + 4, y + 25, 20, 3, fill=c, radius=1.5)
-
-
-def ic_transformateur(s, x, y, c):
-    """Usine : cheminee et batiment."""
-    s.rect(x + 3, y + 14, 22, 14, fill=c, radius=1.5)
-    s.rect(x + 6, y + 6, 5, 8, fill=c, radius=1)
-    s.poly([(x + 13, y + 20), (x + 19, y + 14), (x + 19, y + 20)], fill="FFFFFF")
-    s.poly([(x + 19, y + 20), (x + 25, y + 14), (x + 25, y + 20)], fill="FFFFFF")
-
-
-def ic_gie(s, x, y, c):
-    """Trois personnes : collectif."""
-    for dx, r in ((3, 4.5), (11.5, 5.5), (20, 4.5)):
-        s.ellipse(x + dx, y + 7, r * 2, r * 2, fill=c)
-    s.rect(x + 1, y + 19, 26, 9, fill=c, radius=4.5)
-
-
-def ic_distributeur(s, x, y, c):
-    """Camion de livraison."""
-    s.rect(x + 2, y + 11, 14, 11, fill=c, radius=1.5)
-    s.poly([(x + 16, y + 15), (x + 22, y + 15), (x + 26, y + 19),
-            (x + 26, y + 22), (x + 16, y + 22)], fill=c)
-    s.ellipse(x + 5, y + 21, 7, 7, fill=c)
-    s.ellipse(x + 17, y + 21, 7, 7, fill=c)
-
-
-def ic_acheteur(s, x, y, c):
-    """Panier / sac d'achat."""
-    s.poly([(x + 5, y + 12), (x + 23, y + 12), (x + 21, y + 27), (x + 7, y + 27)],
-           fill=c)
-    s.ellipse(x + 9, y + 4, 10, 11, line=c, lw=1.8)
-    s.rect(x + 9, y + 10, 10, 5, fill=BLANC)
-
-
 segs = [
-    (u"01", u"PRODUCTEURS", ic_producteur, 52, 168, 232),
-    (u"05", u"ACHETEURS PRO", ic_acheteur, 676, 168, 232),
-    (u"02", u"TRANSFORMATEURS", ic_transformateur, 62, 340, 226),
-    (u"03", u"GIE & COOPÉRATIVES", ic_gie, 366, 362, 228),
-    (u"04", u"DISTRIBUTEURS", ic_distributeur, 672, 340, 232),
+    (u"PRODUCTEURS", u"cible_producteur.jpg", 52, 160, 232),
+    (u"ACHETEURS PRO", u"cible_acheteur.jpg", 676, 160, 232),
+    (u"TRANSFORMATEURS", u"cible_transformateur.jpg", 62, 336, 226),
+    (u"GIE & COOPÉRATIVES", u"cible_gie.jpg", 366, 360, 228),
+    (u"DISTRIBUTEURS", u"cible_distributeur.jpg", 672, 336, 232),
 ]
-for n, t, icon, x, y, w in segs:
-    card(s, x, y, w, 72, fill=BLANC, line=TURQUOISE, radius=10, lw=0.9)
-    s.ellipse(x + 16, y + 20, 34, 34, fill=TURQUOISE, alpha=0.14)
-    icon(s, x + 19, y + 23, VERT_FONCE)
-    s.text(t, x + 60, y + 28, w - 74, size=12.5, font=POP, bold=True,
-           color=VERT_FONCE)
-for (x, y) in [(284, 204), (676, 204), (288, 364), (480, 372), (672, 364)]:
+for t, photo, x, y, w in segs:
+    card(s, x, y, w, 84, fill=BLANC, line=TURQUOISE, radius=10, lw=0.9)
+    s.image(IM(photo), x + 12, y + 12, 60, 60)
+    s.text(t, x + 84, y + 34, w - 96, size=12.5, font=POP, bold=True,
+           color=VERT_FONCE, leading=1.2)
+for (x, y) in [(284, 202), (676, 202), (288, 366), (480, 374), (672, 366)]:
     s.line(480, 258, x, y, color=TURQUOISE, lw=0.6, dash=[2, 3], alpha=0.75)
 s.rect(0, 522, W, 18, fill=VERT_FONCE)
 
