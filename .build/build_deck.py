@@ -493,7 +493,7 @@ blocks = [
 for i, (n, t, c, its) in enumerate(blocks):
     x = 52 + i * 288
     card(s, x, 166, 268, 190)
-    s.rect(x, 166, 268, 4, fill=c, radius=2)
+    s.rect(x, 172, 268, 4, fill=c, radius=2)
     numbadge(s, x + 22, 188, n, d=24, fill=c, size=10)
     s.text(t, x + 56, 192, 210, size=14, font=POP, bold=True, color=VERT_FONCE)
     s.bullets(its, x + 22, 238, 232, size=11, color=TRES_FONCE, gap=11,
@@ -912,7 +912,49 @@ s.text(u"« Avec votre soutien, mon activité peut créer plus d'impact "
        u"et d'opportunités. »",
        52, 428, 856, size=13, font=ALFA, color=VERT_FONCE, align="c")
 
-# ============================================================== 22 MERCI
+# ============================================================== 22 CONCLUSION
+s = new(u"Conclusion")
+titlebar(s, u"Conclusion", u"Ce Qu'il Faut Retenir",
+         u"Un marché porteur, une expertise unique, un projet déjà lancé.",
+         page=22)
+
+# --- Les 3 raisons d'y croire
+pts = [(u"UN MARCHÉ", u"Porteur et\ninexploité",
+        u"5,42 M de Sénégalais sur les réseaux, 63 % des PMI dans "
+        u"l'agroalimentaire — et aucune agence spécialisée.", TURQUOISE),
+       (u"UNE EXPERTISE", u"Agricole et\ndigitale",
+        u"Agronome de l'UCAD et community manager formée à Simplon : "
+        u"une double compétence unique sur ce marché.", VERT_FONCE),
+       (u"UN PROJET", u"Déjà lancé,\npas une idée",
+        u"Entreprise formalisée, marque construite, présence digitale "
+        u"active et offres structurées.", OLIVE)]
+for i, (kicker, titre, desc, c) in enumerate(pts):
+    x = 52 + i * 288
+    card(s, x, 172, 268, 152)
+    s.rect(x, 166, 268, 4, fill=c, radius=2)
+    s.text(kicker, x + 22, 192, 224, size=8.6, font=POP, bold=True, color=c,
+           spacing=1.5)
+    s.text(titre.replace("\n", " "), x + 22, 210, 226, size=17, font=ALFA,
+           color=VERT_FONCE, leading=1.2)
+    s.line(x + 22, 244, x + 246, 244, color=GRISE_CLAIR, lw=1)
+    s.text(desc, x + 22, 258, 230, size=10, font=POP, color=TRES_FONCE,
+           leading=1.5)
+
+# --- Ce que je demande
+s.rect(52, 352, 856, 74, fill=VERT_FONCE, radius=11)
+s.text(u"CE QUE JE DEMANDE", 80, 372, 220, size=8.6, font=POP, bold=True,
+       color=TURQUOISE, spacing=1.5)
+s.text(u"1 850 000 FCFA", 80, 388, 260, size=25, font=ALFA, color=BLANC)
+s.line(370, 372, 370, 406, color=TURQUOISE, lw=1.2, alpha=0.6)
+s.text(u"Pour équiper la production, me former, lancer le site vitrine "
+       u"et signer mes cinq premiers clients.",
+       398, 378, 490, size=11.5, font=POP, color=BLANC, leading=1.45)
+
+s.text(u"« Rendre les produits locaux sénégalais aussi visibles en ligne "
+       u"qu'ils le sont dans les rayons. »",
+       52, 452, 856, size=14, font=ALFA, color=VERT_FONCE, align="c")
+
+# ============================================================== 23 MERCI
 s = new("Merci")
 s.rect(0, 0, W, H, fill=CREME)
 s.rect(0, 0, W, 330, fill=VERT_FONCE)
@@ -934,7 +976,7 @@ s.text(u"Sadiya Digital Agri accompagne les entreprises agroalimentaires sénég
        u"pour mieux communiquer, valoriser leurs produits et développer leur visibilité "
        u"grâce au digital.",
        190, 440, 580, size=9, font=POP, color=OLIVE, align="c", leading=1.55)
-footer(s, page=22, logos=True, mention=True)
+footer(s, page=23, logos=True, mention=True)
 
 
 # ------------------------------------------------------------------- BUILD

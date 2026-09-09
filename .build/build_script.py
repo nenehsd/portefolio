@@ -76,8 +76,8 @@ def rule(color="1AAB70", size=6):
     p._p.get_or_add_pPr().append(pbdr)
 
 
-CPS = 17.9   # caracteres/seconde, calibre sur l'audio genere
-GAP = 0.1    # respiration moyenne entre paragraphes (s)
+CPS = 17.34  # caracteres/seconde, calibre sur l'audio genere
+GAP = 0.09   # respiration moyenne entre paragraphes (s)
 
 _clock = [0.0]
 _pending = []
@@ -159,7 +159,7 @@ rule()
 t = doc.add_table(rows=1, cols=3)
 t.alignment = WD_TABLE_ALIGNMENT.CENTER
 infos = [(u"DURÉE", u"@@TOTAL@@"), (u"MOTS", u"@@WORDS@@"),
-         (u"SLIDES", u"22")]
+         (u"SLIDES", u"23")]
 for i, (k, v) in enumerate(infos):
     c = t.rows[0].cells[i]
     c.width = Cm(5.5)
@@ -192,11 +192,10 @@ note(u"Se présenter posément, regarder l'ensemble du jury avant de commencer."
 # ============================================================ 2 CONTEXTE
 section(u"2", u"Contexte & problématique", u"Slide 2")
 dire(u"Regardons d'abord le contexte. Fin 2025, le Sénégal compte onze millions "
-     u"cinq cent mille internautes, soit plus de soixante pour cent de la "
-     u"population, et cinq millions quatre cent mille identités actives sur les "
-     u"réseaux sociaux. Nos concitoyens y passent en moyenne deux heures "
-     u"vingt-quatre par jour. Et soixante-trois pour cent des PMI industrielles "
-     u"du pays évoluent dans l'agroalimentaire.")
+     u"cinq cent mille internautes et cinq millions quatre cent mille identités "
+     u"actives sur les réseaux sociaux, où nos concitoyens passent en moyenne "
+     u"deux heures vingt-quatre par jour. Et soixante-trois pour cent des PMI "
+     u"industrielles du pays évoluent dans l'agroalimentaire.")
 dire(u"Le marché est donc là. Pourtant les entreprises agroalimentaires font "
      u"face à trois freins : une présence très faible sur les réseaux, "
      u"un manque de stratégie — on publie sans objectif ni calendrier — et une "
@@ -222,11 +221,11 @@ dire(u"Ma réponse, c'est Sadiya Digital Agri : une agence de community manageme
      u"spécialisée dans le secteur agro-industriel. Nous proposons trois choses : "
      u"la stratégie social media, la création de contenu, et la gestion de "
      u"communauté.")
-dire(u"Ce qui me différencie, c'est une double expertise. J'ai une licence en "
-     u"agronomie à l'UCAD, donc je connais le terrain, les producteurs, les "
-     u"contraintes du secteur. Et j'ai été formée sept semaines en design et "
-     u"community management à Simplon Sénégal. Cette combinaison, agriculture "
-     u"et digital, personne ne la propose aujourd'hui sur ce marché.")
+dire(u"Ce qui me différencie, c'est une double expertise. Une licence en "
+     u"agronomie à l'UCAD : je connais le terrain, les producteurs, les "
+     u"contraintes du secteur. Et sept semaines de formation en community "
+     u"management à Simplon Sénégal. Cette combinaison, personne ne la propose "
+     u"aujourd'hui sur ce marché.")
 dire(u"Mon marché est cent pour cent B2B : producteurs, transformateurs, "
      u"coopératives, distributeurs et acheteurs professionnels.")
 note(u"C'est le cœur de votre crédibilité. Ralentir sur « agriculture et digital » "
@@ -269,11 +268,10 @@ note(u"Annoncer le seuil de rentabilité avec assurance, puis enchaîner sur le 
 
 # ============================================================ 7 TRACTION
 section(u"7", u"Réalisations & équipe", u"Slides 17 à 20")
-dire(u"Et je ne pars pas de zéro. L'entreprise est formalisée : NINEA et registre "
-     u"de commerce. L'identité de marque est construite : logo, charte, bannière, "
-     u"carte de visite. Ma présence digitale est en place : site portfolio, "
-     u"LinkedIn, Facebook et Meta Business Suite. Je travaille avec Canva, CapCut "
-     u"et Trello.")
+dire(u"Et je ne pars pas de zéro. L'entreprise est formalisée : NINEA et "
+     u"registre de commerce. L'identité de marque est construite. Ma présence "
+     u"digitale est en place : site portfolio, LinkedIn, Facebook et Meta "
+     u"Business Suite.")
 dire(u"Mon ambition, maintenant, c'est de signer mes cinq premiers clients, de "
      u"construire un portefeuille récurrent, et de faire de Sadiya Digital Agri "
      u"la référence de la communication digitale agroalimentaire au Sénégal.")
@@ -293,10 +291,21 @@ dire(u"Pour franchir cette étape, je sollicite un million huit cent cinquante "
 dire(u"Au-delà du financement, j'ai besoin d'un accompagnement en mentorat "
      u"business, de partenariats avec les réseaux agro-industriels, et de "
      u"visibilité pour décrocher mes premiers clients pilotes.")
+note(u"Enchaîner directement sur la conclusion, sans marquer de fin.")
+
+# ============================================================ 9 CONCLUSION
+section(u"9", u"Conclusion", u"Slides 22 et 23")
+dire(u"En résumé, trois choses. Un marché porteur et inexploité : cinq millions "
+     u"de Sénégalais sur les réseaux, une majorité de PMI dans l'agroalimentaire, "
+     u"et aucune agence spécialisée sur ce créneau. Une expertise unique : "
+     u"l'agronomie et le digital réunis. Et un projet déjà lancé, pas une simple "
+     u"idée : l'entreprise est créée, la marque existe, les offres sont prêtes.")
+dire(u"Ce qui me manque aujourd'hui, ce sont les moyens de passer à l'échelle. "
+     u"C'est tout le sens de ma demande.")
 dire(u"Avec votre soutien, mon activité peut créer plus d'impact et "
      u"d'opportunités. Je vous remercie pour votre attention.")
 note(u"Dernière phrase : ralentir nettement, regarder le jury, sourire. "
-     u"Slide 22 « Merci » affichée pendant les questions.")
+     u"Slide 23 « Merci » affichée pendant les questions.")
 
 # ============================================================ ANNEXE
 doc.add_page_break()
