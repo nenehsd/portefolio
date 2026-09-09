@@ -47,7 +47,8 @@ def add_textbox(sl, o):
     tf.vertical_anchor = MSO_ANCHOR.TOP
     for i, ln in enumerate(lines):
         p = tf.paragraphs[0] if i == 0 else tf.add_paragraph()
-        p.alignment = {"l": PP_ALIGN.LEFT, "c": PP_ALIGN.CENTER, "r": PP_ALIGN.RIGHT}[o["align"]]
+        p.alignment = {"l": PP_ALIGN.LEFT, "c": PP_ALIGN.CENTER,
+                       "r": PP_ALIGN.RIGHT, "j": PP_ALIGN.JUSTIFY}[o["align"]]
         p.line_spacing = Pt(lead)
         r = p.add_run()
         r.text = ln
